@@ -1096,6 +1096,8 @@ newBtn.classList.add("red");
 btnsWrapper.append(newBtn);
  */
 
+// ! 038 Создаем табы в новом проекте
+
 window.addEventListener("DOMContentLoaded", () => {
 	const tabHeader = document.querySelector(".tabheader__items"),
 		tabHeaderItem = document.querySelectorAll(".tabheader__item"),
@@ -1126,8 +1128,6 @@ window.addEventListener("DOMContentLoaded", () => {
 		if (target && target.matches("div.tabheader__item")) {
 			tabHeaderItem.forEach((item, i) => {
 				if (target == item) {
-					console.log(target);
-					console.log(item);
 					hideTabContent();
 					showTabContent(i);
 				}
@@ -1135,3 +1135,41 @@ window.addEventListener("DOMContentLoaded", () => {
 		}
 	});
 });
+
+// ! 039 Скрипты и время их выполнения. setTimeout и setInterval
+const modal = document.querySelector(".modal"),
+	modalClose = document.querySelector(".modal__close"),
+	modalBtn = modal.querySelector("button");
+function hideModal(e = modal) {
+	if (e.style.display == "block") {
+		e.style.display = "none";
+	}
+}
+function showModal(e = modal) {
+	e.style.display = "block";
+}
+const intervalModal = setInterval(showModal, 1000);
+
+// setTimeout(() => {
+// 	modal.style.display = "block";
+// }, 3000);
+
+modalClose.addEventListener("click", () => {
+	// ? делегирование (передача) события клика от враппера кнопок, к самим кнопка по условию, что позволяет работать с динамически добавленным контентом
+	hideModal();
+});
+modalBtn.addEventListener("click", () => {
+	// ? делегирование (передача) события клика от враппера кнопок, к самим кнопка по условию, что позволяет работать с динамически добавленным контентом
+	console.log("1");
+	clearInterval(intervalModal);
+});
+let i = 0; // ? счетчтик
+let id = setTimeout(function log() {
+	console.log("Hellow!"); // ? этот код будет строго выполняться строго через каждые полсекунды, вне зависимости от того, сколько времени нужно чтобы код выполнился (рекурсия СетИнтервал)
+	id = setTimeout(log, 500);
+	i++;
+	if (i === 10) {
+		// ? если выполнилось 10 раз отрубаем интервал
+		clearInterval(id);
+	}
+}, 500);
