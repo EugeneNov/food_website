@@ -1168,8 +1168,35 @@ let id = setTimeout(function log() {
 	console.log("Hellow!"); // ? этот код будет строго выполняться строго через каждые полсекунды, вне зависимости от того, сколько времени нужно чтобы код выполнился (рекурсия СетИнтервал)
 	id = setTimeout(log, 500);
 	i++;
-	if (i === 10) {
+	if (i === 3) {
 		// ? если выполнилось 10 раз отрубаем интервал
 		clearInterval(id);
 	}
 }, 500);
+
+// ! 040 Работа с датами
+// const nowData = new Date();
+
+// console.log(nowData.getFullYear());
+// console.log(nowData.getMonth());
+// console.log(nowData.getDate());
+
+// console.log(nowData.getDay());
+
+// console.log(nowData.getHours()); // ? месный часовой пояс
+// console.log(nowData.getUTSHours()); // ? по гринвичу
+
+// console.log(nowData.getTimezoneOffset()); // ? на сколько минут разница с гринвичем
+
+// console.log(nowData.getTime()); // ? милисекунд прошло с 1970 года
+
+// const dats = nowData.getTime();
+// console.log(new Date(dats));
+
+// // ? сколько проходит времени между событиями
+// const startDate = new Date();
+// for (let i = 0; i < 9999999999; i++) {
+// 	let some = i ** 3;
+// }
+// const endDate = new Date();
+// console.log(`Код отработал за ${(endDate - startDate) / 1000} секунд`);
