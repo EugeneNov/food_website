@@ -1134,9 +1134,66 @@ window.addEventListener("DOMContentLoaded", () => {
 			});
 		}
 	});
+
+	// ! 041 Создаем таймер обратного отсчета на сайте
+	const oneDayMillisec = 24 * 60 * 60 * 1000,
+		plusOneDay = new Date(Date.now() + oneDayMillisec),
+		// deadline = "2022-04-18", // ? можно указать так
+		timerSelector = ".timer";
+
+	function getTimeRemaining(endtime) {
+		const t = Date.parse(endtime) - Date.parse(new Date()),
+			days = Math.floor(t / (1000 * 60 * 60 * 24)),
+			hours = Math.floor((t / (1000 * 60 * 60)) % 24),
+			minutes = Math.floor((t / 1000 / 60) % 60),
+			seconds = Math.floor((t / 1000) % 60);
+
+		return {
+			total: t,
+			days: days,
+			hours: hours,
+			minutes: minutes,
+			seconds: seconds,
+		};
+	}
+
+	function getZero(numb) {
+		if (numb >= 0 && numb < 10) {
+			return `0${numb}`;
+		} else {
+			return numb;
+		}
+	}
+
+	function setClock(selector, endtime) {
+		const timer = document.querySelector(selector),
+			days = timer.querySelector("#days"),
+			hours = timer.querySelector("#hours"),
+			minutes = timer.querySelector("#minutes"),
+			seconds = timer.querySelector("#seconds"),
+			timeInterval = setInterval(updateClock, 1000);
+
+		updateClock();
+
+		function updateClock() {
+			const t = getTimeRemaining(endtime);
+
+			days.textContent = getZero(t.days);
+			hours.textContent = getZero(t.hours);
+			minutes.textContent = getZero(t.minutes);
+			seconds.textContent = getZero(t.seconds);
+
+			if (t.total <= 0) {
+				clearInterval(timeInterval);
+			}
+		}
+	}
+
+	setClock(timerSelector, plusOneDay);
 });
 
 // ! 039 Скрипты и время их выполнения. setTimeout и setInterval
+/* 
 const modal = document.querySelector(".modal"),
 	modalClose = document.querySelector(".modal__close"),
 	modalBtn = modal.querySelector("button");
@@ -1173,7 +1230,7 @@ let id = setTimeout(function log() {
 		clearInterval(id);
 	}
 }, 500);
-
+ */
 // ! 040 Работа с датами
 // const nowData = new Date();
 
