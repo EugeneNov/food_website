@@ -1159,6 +1159,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
 	function getZero(numb) {
 		if (numb >= 0 && numb < 10) {
+			// ? если число меньше 10 добавляем перед числом ноль
 			return `0${numb}`;
 		} else {
 			return numb;
