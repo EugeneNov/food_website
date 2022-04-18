@@ -1201,6 +1201,7 @@ window.addEventListener("DOMContentLoaded", () => {
 		modal.classList.add("show", "fade");
 		modal.classList.remove("hide");
 		document.body.style.overflow = "hidden";
+		clearInterval(intervalModal);
 	}
 
 	function hideModal(modal = modalWind) {
@@ -1229,6 +1230,21 @@ window.addEventListener("DOMContentLoaded", () => {
 			hideModal();
 		}
 	});
+
+	// ! 044 Модификации модального окна
+	const intervalModal = setTimeout(showModal, 5000);
+
+	function showModalByScroll() {
+		if (
+			window.pageYOffset + document.documentElement.clientHeight >=
+			document.documentElement.scrollHeight
+		) {
+			// ? невидимая область документа + видимая область = высота всего документа
+			showModal();
+			window.removeEventListener("scroll", showModalByScroll);
+		}
+	}
+	window.addEventListener("scroll", showModalByScroll);
 });
 
 // ! 039 Скрипты и время их выполнения. setTimeout и setInterval
