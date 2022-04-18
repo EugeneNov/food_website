@@ -1258,3 +1258,37 @@ let id = setTimeout(function log() {
 // }
 // const endDate = new Date();
 // console.log(`Код отработал за ${(endDate - startDate) / 1000} секунд`);
+
+// !042 Параметры документа, окна и работа с ними
+// console.log(
+// 	document.querySelector(".offer__action .btn").getBoundingClientRect() //? координаты элемента (все считаются от лквого верхнего угла)
+// );
+
+// console.log(
+// 	window.getComputedStyle(document.querySelector(".offer__action .btn"))
+// 	//? все скомпилированные стили объекта
+// );
+
+// console.log(
+// 	window.getComputedStyle(document.querySelector(".offer__action .btn"))
+// 		.display
+// 	//? Какое надо свойство можем получить, но не можем изменять
+// );
+
+// console.log(document.documentElement.scrollTop);
+/* 
+document.querySelector(".order__form .btn").addEventListener("click", (e) => {
+	//? скролл топ 0
+	e.preventDefault();
+	function scrollTop0() {
+		if (document.documentElement.scrollTop <= 0) {
+			clearInterval(interval);
+		} else {
+			document.documentElement.scrollTop -= 30;
+		}
+	}
+	const interval = setInterval(scrollTop0, 10);
+});
+ */
+// window.scrollBy(0, 300); //? скролл от текущего положения на 300 пх вниз
+// window.scrollTo(0, 300); //? скролл от начала страницы на 300 пх вниз
