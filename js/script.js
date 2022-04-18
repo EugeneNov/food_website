@@ -1191,6 +1191,44 @@ window.addEventListener("DOMContentLoaded", () => {
 	}
 
 	setClock(timerSelector, plusOneDay);
+
+	// !043 Создаем модальное окно
+	const modalWind = document.querySelector(".modal"),
+		modalBtn = document.querySelectorAll("button[data-modal]"),
+		modalCloseBtn = document.querySelector("[data-close]");
+
+	function showModal(modal = modalWind) {
+		modal.classList.add("show", "fade");
+		modal.classList.remove("hide");
+		document.body.style.overflow = "hidden";
+	}
+
+	function hideModal(modal = modalWind) {
+		modal.classList.add("hide");
+		modal.classList.remove("show", "fade");
+		document.body.style.overflow = "";
+	}
+
+	modalBtn.forEach((btn) => {
+		btn.addEventListener("click", () => {
+			showModal();
+		});
+	});
+
+	modalCloseBtn.addEventListener("click", () => {
+		hideModal();
+	});
+
+	modalWind.addEventListener("click", (e) => {
+		if (e.target === modalWind) {
+			hideModal();
+		}
+	});
+	document.addEventListener("keydown", (e) => {
+		if (e.code === "Escape" && modalWind.matches(".show")) {
+			hideModal();
+		}
+	});
 });
 
 // ! 039 Скрипты и время их выполнения. setTimeout и setInterval
