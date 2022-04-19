@@ -1346,3 +1346,49 @@ document.querySelector(".order__form .btn").addEventListener("click", (e) => {
  */
 // window.scrollBy(0, 300); //? скролл от текущего положения на 300 пх вниз
 // window.scrollTo(0, 300); //? скролл от начала страницы на 300 пх вниз
+
+//! 045 Функции-конструкторы
+// function User(name, age, id) {
+// 	// ? Инициализация функции-конструкора (она создает разные объекты)
+// 	this.name = name;
+// 	this.age = age;
+// 	this.id = id;
+// 	this.human = true;
+// 	this.hello = function () {
+// 		// ? можно добавлять методы в конструктор
+// 		console.log(`Hello ${this.name}`);
+// 	};
+// }
+// User.prototype.exit = function () {
+// 	// ? если нет доступа к основной функции конструктору таким образом добвляем к ней еще методы или параметры
+// 	console.log(`Пользователь ${this.name} вышел`);
+// };
+// /*
+// class User {
+// 	// ? классы это синтаксический сахар функций-конструкторов (тоже самое)
+// 	constructor(name,age,id){
+// 		this.name = name;
+// 	this.age = age;
+// 	this.id = id;
+// 	this.human = true;
+// 	}
+// 	hello() {
+// 		console.log(`Hello ${this.name}`);
+// 	}
+// 	exit() {
+// 		console.log(`Пользователь ${this.name} вышел`);
+// 	}
+// }
+//  */
+// const eugene = new User("Eugene", 33);
+// // ? Создание с помощью конструктора новых обьектов
+// const taras = new User("Taras", 10);
+// // ? Создание с помощью конструктора новых обьектов
+// eugene.id = "#322";
+// // ? запись данных в обект
+// eugene.id = "322";
+// // ? перезапись данных в обект
+
+// console.log(eugene);
+// taras.hello();
+// eugene.exit();
