@@ -1392,3 +1392,100 @@ document.querySelector(".order__form .btn").addEventListener("click", (e) => {
 // console.log(eugene);
 // taras.hello();
 // eugene.exit();
+
+//! 046 Контекст вызова. This
+
+//! ВАЖНО
+// function showThis(a, b) {
+// 	console.log(this); //undefind
+// 	function sum() {
+// 		console.log(this); //undefind
+// 		return a + b; //ищит в теле своей функции, потом ищет у родительской функции
+// 	}
+
+// 	console.log(sum()); //зымыкаем функцию
+// }
+// showThis(5, 15);
+//? 1) В обычной функции заданной через свойство function : контекст this = window, если не использован 'use strict', если использован = undefined.
+
+// const obj = {
+// 	a: 30,
+// 	b: 40,
+// 	sum: function () {
+// 		// это метод функции и его контекст вызова сам объект
+// 		console.log(`контекст вызова метода объекта равен = ${this}`);
+// 		function shout() {
+// 			console.log(
+// 				`контекст вызова функции, которая не является методом равно = ${this}`
+// 			);
+// 		}
+// 		shout();
+// 		const bz = () => {
+// 			console.log(
+// 				`контекст вызова функции, которая не является методом (но являющейся стрелочной) равно = ${this}`
+// 			);
+// 		};
+// 		bz();
+// 	},
+// };
+// obj.sum();
+// //? 2) Контекст this у методов объектов = самому обьекту.
+
+// function User(name, age, id) {
+// 	// ? Инициализация функции-конструкора (она создает разные объекты)
+// 	this.name = name;
+// 	this.age = age;
+// 	this.id = id;
+// 	this.human = true;
+// 	this.hello = function () {
+// 		// ? можно добавлять методы в конструктор
+// 		console.log(`Hello ${this.name}`);
+// 	};
+// }
+// const eugene = new User("Eugene", 33);
+
+// //? 3) this в конструкторах и классах - это новый экземпляр объекта (конструктора или класса)
+
+// function sayName(id, rlyBig) {
+// 	console.log(this);
+// 	console.log(this.name);
+// 	console.log(this.dick);
+// 	console.log(id);
+// 	console.log(rlyBig);
+// }
+
+// const user = {
+// 	name: "Pipka",
+// 	dick: 10,
+// };
+// sayName.call(user, 23, true); //указание функции работы на контексте в часности на обьекте user
+// sayName.apply(user, ["23", true]);
+
+// function count(num) {
+// 	return this * num;
+// }
+
+// const double = count.bind(2); // (2) передается в функцию как контекст вызова (вместо this)
+// console.log(double(5));
+// console.log(double(22));
+
+//? 4) Ручная привязка this: это методы call и apply (прямое указание функции контекста), bind (создает новую функцию связанную с определенным контекстом).
+
+const btn = document.querySelector(".modal__content button");
+
+// btn.addEventListener("click", function (e) {
+// 	if (e.target === this) {
+// 		console.log("e.target === this");
+// 	}
+// });
+
+const objJ = {
+	num: 5,
+	sayNumb: function () {
+		const say = () => {
+			console.log(this.num);
+		};
+		say();
+	},
+};
+objJ.sayNumb();
