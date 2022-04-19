@@ -1471,21 +1471,21 @@ document.querySelector(".order__form .btn").addEventListener("click", (e) => {
 
 //? 4) Ручная привязка this: это методы call и apply (прямое указание функции контекста), bind (создает новую функцию связанную с определенным контекстом).
 
-const btn = document.querySelector(".modal__content button");
+// const btn = document.querySelector(".modal__content button");
 
-// btn.addEventListener("click", function (e) {
-// 	if (e.target === this) {
-// 		console.log("e.target === this");
-// 	}
-// });
+// // btn.addEventListener("click", function (e) {
+// // 	if (e.target === this) {
+// // 		console.log("e.target === this");
+// // 	}
+// // });
 
-const objJ = {
-	num: 5,
-	sayNumb: function () {
-		const say = () => {
-			console.log(this.num);
-		};
-		say();
-	},
-};
-objJ.sayNumb();
+// const objJ = {
+// 	num: 5,
+// 	sayNumb: function () {
+// 		const say = () => {
+// 			console.log(this.num);
+// 		};
+// 		say();
+// 	},
+// };
+// objJ.sayNumb();
