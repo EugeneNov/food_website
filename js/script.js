@@ -1232,7 +1232,7 @@ window.addEventListener("DOMContentLoaded", () => {
 	});
 
 	// ! 044 Модификации модального окна
-	const intervalModal = setTimeout(showModal, 5000);
+	const intervalModal = setTimeout(showModal, 5000); //! ОТРУБИЛ, ЧТОБЫ НЕ ЗАЕБЫВАЛО
 
 	function showModalByScroll() {
 		if (
@@ -1245,6 +1245,85 @@ window.addEventListener("DOMContentLoaded", () => {
 		}
 	}
 	window.addEventListener("scroll", showModalByScroll);
+
+	//! 048 Используем классы в реальной работе
+	class CardMenu {
+		constructor(imgUrl, imgAlt, subtitle, descr, price, parentSelector) {
+			this.src = imgUrl;
+			this.alt = imgAlt;
+			this.title = subtitle;
+			this.descr = descr;
+			this.price = price;
+			this.parent = document.querySelector(parentSelector);
+			this.transfer = 27; //курс валют доллара к грн
+			this.changeToUAH();
+		}
+
+		changeToUAH() {
+			this.price *= this.transfer;
+		}
+		render() {
+			const itemMenuDiv = document.createElement("div");
+			itemMenuDiv.innerHTML = `
+			<div class="menu__item">
+				<img src=${this.src} alt=${this.alt} />
+				<h3 class="menu__item-subtitle">${this.title}</h3>
+				<div class="menu__item-descr">
+				${this.descr}
+				</div>
+				<div class="menu__item-divider"></div>
+				<div class="menu__item-price">
+					<div class="menu__item-cost">Цена:</div>
+					<div class="menu__item-total">
+						<span>${this.price}</span> грн/день
+					</div>
+				</div>
+			</div>
+			`;
+			this.parent.append(itemMenuDiv);
+		}
+	}
+
+	// const elem1 = new CardMenu(
+	// 	//? запись с ссылкой на объект для дальнейшего использования
+	// 	"img/tabs/vegy.jpg",
+	// 	"vegy",
+	// 	'Меню "Фитнес"',
+	// 	'Меню "Фитнес" - это новый подход к приготовлению блюд: больше свежих овощей и фруктов. Продукт активных и здоровых людей. Это абсолютно новый продукт с оптимальной ценой и высоким качеством!',
+	// 	8,
+	// 	".menu__field .container"
+	// );
+	// elem1.render();
+
+	new CardMenu(
+		//? запись без ссылки с примененным сразу методом рендер
+		"img/tabs/vegy.jpg",
+		"vegy",
+		'Меню "Фитнес"',
+		'Меню "Фитнес" - это новый подход к приготовлению блюд: больше свежих овощей и фруктов. Продукт активных и здоровых людей. Это абсолютно новый продукт с оптимальной ценой и высоким качеством!',
+		9,
+		".menu__field .container"
+	).render();
+
+	new CardMenu(
+		//? запись без ссылки с примененным сразу методом рендер
+		"img/tabs/elite.jpg",
+		"elite",
+		"Меню “Премиум”",
+		"В меню “Премиум” мы используем не только красивый дизайн упаковки, но и качественное исполнение блюд. Красная рыба, морепродукты, фрукты - ресторанное меню без похода в ресторан!",
+		14,
+		".menu__field .container"
+	).render();
+
+	new CardMenu(
+		//? запись без ссылки с примененным сразу методом рендер
+		"img/tabs/post.jpg",
+		"post",
+		'Меню "Постное"',
+		"Меню “Постное” - это тщательный подбор ингредиентов: полное отсутствие продуктов животного происхождения, молоко из миндаля, овса, кокоса или гречки, правильное количество белков за счет тофу и импортных вегетарианских стейков.",
+		21,
+		".menu__field .container"
+	).render();
 });
 
 // ! 039 Скрипты и время их выполнения. setTimeout и setInterval
@@ -1491,38 +1570,38 @@ document.querySelector(".order__form .btn").addEventListener("click", (e) => {
 // objJ.sayNumb();
 
 //! 047 Классы (ES6)
-class Rectangle {
-	constructor(height, width) {
-		this.height = height;
-		this.width = width;
-	}
+// class Rectangle {
+// 	constructor(height, width) {
+// 		this.height = height;
+// 		this.width = width;
+// 	}
 
-	calcArea() {
-		return this.height * this.width;
-	}
-}
-class ColoredRectangleWithText extends Rectangle {
-	//? Наследует методы и свойства от родительского класса Rectangle
-	constructor(height, width, text, bgColor) {
-		super(height, width); //? копирует все параметры родителя this.height = height; и this.width = width;, если ничего в скобках не указано, либо непосредственно те, которые указываем
-		this.text = text;
-		this.bgColor = bgColor;
-	}
+// 	calcArea() {
+// 		return this.height * this.width;
+// 	}
+// }
+// class ColoredRectangleWithText extends Rectangle {
+// 	//? Наследует методы и свойства от родительского класса Rectangle
+// 	constructor(height, width, text, bgColor) {
+// 		super(height, width); //? копирует все параметры родителя this.height = height; и this.width = width;, если ничего в скобках не указано, либо непосредственно те, которые указываем
+// 		this.text = text;
+// 		this.bgColor = bgColor;
+// 	}
 
-	showMyProps() {
-		console.log(
-			`Текст: ${this.text}, цвет: ${this.bgColor}, высота:${this.height}, ширина:${this.width}`
-		);
-	}
-}
+// 	showMyProps() {
+// 		console.log(
+// 			`Текст: ${this.text}, цвет: ${this.bgColor}, высота:${this.height}, ширина:${this.width}`
+// 		);
+// 	}
+// }
 
-const squaer = new Rectangle(10, 10);
-const squaerLong = new Rectangle(20, 100);
-const squaerWidthText = new ColoredRectangleWithText(40, 50, "Lol", "#000");
-// console.log(squaer.calcArea());
-// console.log(squaerLong.calcArea());
-squaerWidthText.showMyProps();
-console.log(squaerWidthText.calcArea());
+// const squaer = new Rectangle(10, 10);
+// const squaerLong = new Rectangle(20, 100);
+// const squaerWidthText = new ColoredRectangleWithText(40, 50, "Lol", "#000");
+// // console.log(squaer.calcArea());
+// // console.log(squaerLong.calcArea());
+// squaerWidthText.showMyProps();
+// console.log(squaerWidthText.calcArea());
 //! Принципы ООП
 //? 1) Абстракция - отделение концепции от экземпляра. Пример это КЛАССЫ концепция это сам шаблон класса, и экземпляры это копии на основе этого шаблона с разными параметрами.
 
