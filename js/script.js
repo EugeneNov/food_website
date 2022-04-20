@@ -1489,3 +1489,41 @@ document.querySelector(".order__form .btn").addEventListener("click", (e) => {
 // 	},
 // };
 // objJ.sayNumb();
+
+//! 047 Классы (ES6)
+class Rectangle {
+	constructor(height, width) {
+		this.height = height;
+		this.width = width;
+	}
+
+	calcArea() {
+		return this.height * this.width;
+	}
+}
+class ColoredRectangleWithText extends Rectangle {
+	//? Наследует методы и свойства от родительского класса Rectangle
+	constructor(height, width, text, bgColor) {
+		super(height, width); //? копирует все параметры родителя this.height = height; и this.width = width;, если ничего в скобках не указано, либо непосредственно те, которые указываем
+		this.text = text;
+		this.bgColor = bgColor;
+	}
+
+	showMyProps() {
+		console.log(
+			`Текст: ${this.text}, цвет: ${this.bgColor}, высота:${this.height}, ширина:${this.width}`
+		);
+	}
+}
+
+const squaer = new Rectangle(10, 10);
+const squaerLong = new Rectangle(20, 100);
+const squaerWidthText = new ColoredRectangleWithText(40, 50, "Lol", "#000");
+// console.log(squaer.calcArea());
+// console.log(squaerLong.calcArea());
+squaerWidthText.showMyProps();
+console.log(squaerWidthText.calcArea());
+//! Принципы ООП
+//? 1) Абстракция - отделение концепции от экземпляра. Пример это КЛАССЫ концепция это сам шаблон класса, и экземпляры это копии на основе этого шаблона с разными параметрами.
+
+//? 2) Наследование - способность объекта или класса базироваться на другом объекта или классе
