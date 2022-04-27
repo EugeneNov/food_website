@@ -1661,7 +1661,9 @@ const mainObj = {
 	},
 };
 const str = JSON.stringify(mainObj); // ? перевод данных из объекта в строку JSON
-console.log(str);
+// console.log(str);
 const newObj = JSON.parse(str); // ? перевод данных типа из сервера в объект для работы с ними
-
+//console.log(newObj);
+newObj.skills.dick = "big";
+console.log(mainObj);
 console.log(newObj);
