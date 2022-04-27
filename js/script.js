@@ -1640,3 +1640,28 @@ document.querySelector(".order__form .btn").addEventListener("click", (e) => {
 // 	console.log(num * basis);
 // }
 // calcOrDouble(3);
+
+// ! 051 JSON формат передачи данных, глубокое клонирование объектов
+// const persone = {
+// 	name: "Eugene",
+// 	tel: "+72312434113",
+// };
+// const str = JSON.stringify(persone); // ? перевод данных из объекта в строку JSON для отправки на сервер
+
+// console.log(str);
+// console.log(JSON.parse(str)); // ? перевод данных типа из сервера в объект для работы с ними
+
+// ! Глубокая копия объекта !!
+const mainObj = {
+	name: "Eugene",
+	tel: "+72312434113",
+	skills: {
+		lang: "UA",
+		dick: "small",
+	},
+};
+const str = JSON.stringify(mainObj); // ? перевод данных из объекта в строку JSON
+console.log(str);
+const newObj = JSON.parse(str); // ? перевод данных типа из сервера в объект для работы с ними
+
+console.log(newObj);
