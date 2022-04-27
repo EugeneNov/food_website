@@ -550,7 +550,7 @@ console.log(someShit.join("# "));
  */
 // ! 022 Передача по ссылке или по значению, Spread оператор (ES6-ES9)
 
-// ! передача по значению работает только для примитивных типов данных (числа, строки, булевые данные), при работе с объектами передача по ссылке
+// ! передача по значению работает только для примитивных типов данных (числа, строки, булевые данные), при работе с объектами и массивами передача по ссылке
 /* 
 let a = 10,
 	b = 20;
@@ -567,8 +567,8 @@ const obj = {
 const copyObj = obj; //TODO передается не сам обьект(данные обьекта, а просто ссылка на него
 copyObj.a = 20;
 console.log(obj);
-console.log(copyObj);
-// TODO обект obj изменился по ссылке
+console.log(copyObj);// TODO обект obj изменился по ссылке
+
 
 // ? Создание поверхносной копии обекта (первый уровень вложенности (тоесть сложные объекты внутри будут также пеедаваться по ссылке)) при помощи цикла.
 const obj = {
@@ -618,7 +618,7 @@ console.log(nums);
 // ? Копирование массива
 const copyMassive = [...numsWords];
 
-// ? копирование объекта
+// ? копирование объекта с помощью Spread оператора
 const objN = {
 	d: 32,
 	e: 0,
@@ -1248,12 +1248,22 @@ window.addEventListener("DOMContentLoaded", () => {
 
 	//! 048 Используем классы в реальной работе
 	class CardMenu {
-		constructor(imgUrl, imgAlt, subtitle, descr, price, parentSelector) {
+		constructor(
+			imgUrl,
+			imgAlt,
+			subtitle,
+			descr,
+			price,
+			parentSelector,
+			...clases
+		) {
+			//? ...clases - рест оператор, может быть любое колличество классов
 			this.src = imgUrl;
 			this.alt = imgAlt;
 			this.title = subtitle;
 			this.descr = descr;
 			this.price = price;
+			this.clases = clases;
 			this.parent = document.querySelector(parentSelector);
 			this.transfer = 27; //курс валют доллара к грн
 			this.changeToUAH();
@@ -1264,8 +1274,18 @@ window.addEventListener("DOMContentLoaded", () => {
 		}
 		render() {
 			const itemMenuDiv = document.createElement("div");
+
+			this.clases.forEach((className) =>
+				itemMenuDiv.classList.add(className)
+			); //? поскольку классы у рест оператора записываются в массив, нам нужно перебрать все в массиве методом форич
+
+			if (this.clases.length === 0 || !this.clases.includes("menu__item")) {
+				// ? Если в массиве нет никакого класса, мы добавляем класс menu__item, который должен быть по умолчанию или (||) если в классах нет класса menu__item мы также его добавляем
+				this.itemMenuDiv = "menu__item";
+				itemMenuDiv.classList.add(this.itemMenuDiv);
+			}
+
 			itemMenuDiv.innerHTML = `
-			<div class="menu__item">
 				<img src=${this.src} alt=${this.alt} />
 				<h3 class="menu__item-subtitle">${this.title}</h3>
 				<div class="menu__item-descr">
@@ -1278,7 +1298,6 @@ window.addEventListener("DOMContentLoaded", () => {
 						<span>${this.price}</span> грн/день
 					</div>
 				</div>
-			</div>
 			`;
 			this.parent.append(itemMenuDiv);
 		}
@@ -1302,7 +1321,8 @@ window.addEventListener("DOMContentLoaded", () => {
 		'Меню "Фитнес"',
 		'Меню "Фитнес" - это новый подход к приготовлению блюд: больше свежих овощей и фруктов. Продукт активных и здоровых людей. Это абсолютно новый продукт с оптимальной ценой и высоким качеством!',
 		9,
-		".menu__field .container"
+		".menu__field .container",
+		"asdasd"
 	).render();
 
 	new CardMenu(
@@ -1312,7 +1332,8 @@ window.addEventListener("DOMContentLoaded", () => {
 		"Меню “Премиум”",
 		"В меню “Премиум” мы используем не только красивый дизайн упаковки, но и качественное исполнение блюд. Красная рыба, морепродукты, фрукты - ресторанное меню без похода в ресторан!",
 		14,
-		".menu__field .container"
+		".menu__field .container",
+		"menu__item"
 	).render();
 
 	new CardMenu(
@@ -1322,7 +1343,8 @@ window.addEventListener("DOMContentLoaded", () => {
 		'Меню "Постное"',
 		"Меню “Постное” - это тщательный подбор ингредиентов: полное отсутствие продуктов животного происхождения, молоко из миндаля, овса, кокоса или гречки, правильное количество белков за счет тофу и импортных вегетарианских стейков.",
 		21,
-		".menu__field .container"
+		".menu__field .container",
+		"menu__item"
 	).render();
 });
 
@@ -1606,3 +1628,15 @@ document.querySelector(".order__form .btn").addEventListener("click", (e) => {
 //? 1) Абстракция - отделение концепции от экземпляра. Пример это КЛАССЫ концепция это сам шаблон класса, и экземпляры это копии на основе этого шаблона с разными параметрами.
 
 //? 2) Наследование - способность объекта или класса базироваться на другом объекта или классе
+
+//! 049 Rest оператор и параметры по умолчанию (ES6)
+// const log = function (a, b, ...rest) {
+// 	// ? рест оператор собирает все что остается все остальные параметры в данном случаи ипомещает их в массив
+// 	console.log(a, b, rest);
+// };
+// log("asdasd", "fghfghfgh", "3", "4", "sda", "ass", 7);
+
+// function calcOrDouble(num, basis = 2) {
+// 	console.log(num * basis);
+// }
+// calcOrDouble(3);
