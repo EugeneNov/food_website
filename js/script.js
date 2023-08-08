@@ -1,4 +1,5 @@
 "use strict";
+"use strict";
 /* // ! Задание переменных и констант
 let number = 5;
 const leftBorderWidth = 1;
@@ -13,50 +14,61 @@ obj.a = 10;
 
 console.log(obj);
 (function () {})();
-// ! Типы данных
-let number = 4.5; // Number
+*/
 
-console.log(-4 / 0); // -Infinity
-console.log("string" * 7); // NaN
+// !06 Типы данных
+//! ReferenceError - ошибка ссылочного типа (мы не можем сослаться на несуществующий объект). Это и есть null
 
-const string = "Vasya"; // String
+//* null - это когда чего-то не существует
+//* undefined - это когда чего-то существует но ему не присвоено значение
+//* Symbol - символы
+//* BigInt - большие числа (больше чем 2 в 53 степени)
 
-const booLean = false; // Boolean
+// let number = 4.5; //* Number
 
-console.log(undef); // null
+// console.log(-4 / 0); //* -Infinity - получаем при делении на 0
+// console.log("string" * 7); //* NaN (not a number) не число - не подлежит математической логики
 
-let jija;
-console.log(jija); // undefined
+// const string = "Vasya"; //* String
 
-const obj = {
-	name: "Vasya",
-	age: 24,
-	isMarrid: false,
-};
-console.log(obj.isMarrid);
-console.log(obj.name);
-console.log(obj["age"]);
+// const booLean = false; //* Boolean
 
-let arr = [23, "lol", {}, [23, "lol", {}, [], "dick"], "dick"];
-console.log(arr[2]);
+// console.log(undef); //* null - это когда чего-то не существует
 
-"" + 1 + 0 = "10" //
-"" - 1 + 0 = -1 //
-true + false = 1
-6 / "3" = 2
-"2" * "3" = 6
-4 + 5 + "px" = "9px"
-"$" + 4 + 5 = "$45"
-"4" - 2 = 2
-"4px" - 2 = NaN
-7 / 0 = Infinity
-"  -9  " + 5 = "  -9  5" //
-"  -9  " - 5 = -14 //
-null + 1 = 1 //
-undefined + 1 = NaN //
-" \t \n" - 2 = -2 //
+// let jija;
+// console.log(jija); //* undefined - существует но внутри пусто
+
+// const obj = {
+// 	name: "Vasya",
+// 	age: 24,
+// 	isMarrid: false,
+// };
+// console.log(obj.isMarrid);
+// console.log(obj.name);
+// console.log(obj["age"]);
+
+// let arr = [23, "lol", {}, [23, "lol", {}, [], "dick"], "dick"];
+// console.log(arr[2]);
+
+// "" + 1 + 0 = "10" //
+// "" - 1 + 0 = -1 //
+// true + false = 1
+// 6 / "3" = 2
+// "2" * "3" = 6
+// 4 + 5 + "px" = "9px"
+// "$" + 4 + 5 = "$45"
+// "4" - 2 = 2
+// "4px" - 2 = NaN
+// 7 / 0 = Infinity
+// "  -9  " + 5 = "  -9  5" //
+// "  -9  " - 5 = -14 //
+// null + 1 = 1 //
+// undefined + 1 = NaN //
+// " \t \n" - 2 = -2 //
+
 
 // !Взаимодействие с пользователем
+/*
 alert("Hi Nigga!");
 const rezQues = confirm("Ты чмо?");
 console.log(rezQues);
@@ -69,15 +81,17 @@ answers[0] = prompt("Ваше имя?", "");
 answers[1] = prompt("Ваша фамилия?", "");
 answers[2] = prompt("Сколько вам лет?", "");
 
-console.log(typeof answers);
+console.log(typeof(answers));
+*/
 
 // ! 008 Интерполяция (вставлять внутри строки значения переменных)
+/*
 const category = "toys";
 const url = "https://someurl.com/";
 console.log(`${url}${category}/5`); // !используем кавычки там, где буква ё
 
 // ! 009 Операторы в JS
-// *Конкатинация - при помощи оператора сложения (унарный плюс) преобразование строк в числа, и чисел в строки
+//* Конкатинация - при помощи оператора сложения (унарный плюс) преобразование строк в числа, и чисел в строки
 console.log("someString" + " - object"); // *выйдет строка
 console.log(typeof (4 + "5")); // *выйдет строка
 console.log(typeof (4 + +"5")); // *выйдет число
@@ -87,21 +101,49 @@ let incr = 10,
 	decr = 10;
 // ++incr;
 // decr--;
-console.log(incr++); //выводит значение потом увеличивает
-console.log(--decr); //уменьшает потом выводит измененное значение
-console.log(2 * 5 == "10"); // true сравнение не строгое (не сравниваются типы данных)
-console.log(2 * 5 === "10"); // false сравнение строгое
-// * = - присваивание
-// * == - сравнение только знчений без учета типа данных
-// * === - строгое сравнение знчений с учетом типа данных
-// * && - И - если все правда возвращает правду
-// * || - ИЛИ - хотябы 1 правда возвращает правду
-// * ! - Отрицание - меняет на противоположное
-// * != - Отрицание - меняет на противоположное
+console.log(incr++); // *выводит значение потом увеличивает
+console.log(--decr); // *уменьшает потом выводит измененное значение
+console.log(2 * 5 == "10"); // *true сравнение не строгое (не сравниваются типы данных)
+console.log(2 * 5 === "10"); // *false сравнение строгое
+console.log(5%2); // *возвращает остаток от деления
+//* + - унарный плюс (преобразование в число, если это возможно)
+//* % - возвращает остаток от деления
+//* = - присваивание
+//* == - сравнение только знчений без учета типа данных
+//* === - строгое сравнение знчений с учетом типа данных
+
+//* Приоритет оператора && выше, чем ||, поэтому он выполнится первым.
+//* && - И - если все правда возвращает правду (возвращает первое ложное значение)
+//* || - ИЛИ - хотябы 1 правда возвращает правду (возвращает первую правду)
+//* ! - Отрицание - меняет на противоположное
+//* != - Не равно
+
+//* Оператор нулевого слияния представляет собой два вопросительных знака ??.
+
+//* Так как он обрабатывает null и undefined одинаковым образом, то для этой статьи мы введём специальный термин. Для краткости будем говорить, что значение «определено», если оно не равняется ни null, ни undefined.
+
+//* Результат выражения a ?? b будет следующим:
+
+//* если a определено, то a,
+//* если a не определено, то b.
+//* Иначе говоря, оператор ?? возвращает первый аргумент, если он не null/undefined, иначе второй.
+
+//* Оператор нулевого слияния не является чем-то принципиально новым. Это всего лишь удобный синтаксис, как из двух значений получить одно, которое «определено».
+
+//* Вот как можно переписать выражение result = a ?? b, используя уже знакомые нам операторы:
+
+//* result = (a !== null && a !== undefined) ? a : b;
+
+//* Например, здесь мы отобразим user, если её значение не null/undefined, в противном случае Аноним:
+
+//* let user;
+//* alert(user ?? "Аноним"); // Аноним (user не существует)
+
 const isCheked = false,
 	isClose = true;
 console.log(isCheked || !isClose);
  */
+
 //!Практика 012
 /* Задание на урок:
 
@@ -161,10 +203,10 @@ if (numB > 70) {
 } else {
 	console.log("fuck you!");
 }
-// * Тернарный оператор, который работает с 3мя аргументами
+//* Тернарный оператор, который работает с 3мя аргументами
 numB == 23 ? console.log("numB=23") : console.log("fuck you!");
 
-// * Switch
+//* Switch работает только с строгим соответствием
 const num = 20;
 switch (num) {
 	case 22:
@@ -179,30 +221,93 @@ switch (num) {
 	default:
 		console.log("fuck you!");
 		break;
-} */
+} 
+*/
 // ! 014 Циклы
-/* let num = 50;
+// let num = 50;
 
-while (num <= 55) {
-	console.log(num);
-	num++;
+// while (num <= 55) { //* пока условие выполняется мы делаем действия
+// 	console.log(num);
+// 	num++;
+// }
+
+// do { //* сначала делаем действие, затем проверяем условие
+// 	console.log(num);
+// 	num++;
+// }
+// while (num <= 55);
+
+// for (let i = 1; i < 10; i++){
+// 	if (i%2) { //* пропускает не четные значения
+// 		//break; //* останавливает цикл при выполнении условия
+// 		continue; //* пропускает при выполнении условия этот шаг, но не прирывает выполнение цикла
+// 	}
+// 	console.log(i);
+// }
+
+// //* Перепишите код, заменив цикл for на while, без изменения поведения цикла.
+// for (let i = 0; i < 3; i++) {
+// 	console.log(`number ${i}!`);
+// }
+
+// let i = 0;
+// while (i < 3) { //* пока условие выполняется мы делаем действия
+// 	console.log(`number ${i}!`);
+// 	i++;
+// }
+/*
+Напишите цикл, который предлагает prompt ввести число, большее 100. Если посетитель ввёл другое число – попросить ввести ещё раз, и так далее.
+
+Цикл должен спрашивать число пока либо посетитель не введёт число, большее 100, либо не нажмёт кнопку Отмена (ESC).
+
+Предполагается, что посетитель вводит только числа. Предусматривать обработку нечисловых строк в этой задаче необязательно.
+*/
+// for (let i = 0; i < 100;){
+// 	i = +prompt("Введите число больше 100", "0");
+// 	if (i > 100) { //* пропускает не четные значения
+// 		break; //* останавливает цикл zпри выполнении условия
+// 	}
+// 	console.log(i);
+// }
+
+//todo Обмозговать
+/*
+Натуральное число, большее 1, называется простым, если оно ни на что не делится, кроме себя и 1.
+
+Другими словами, n > 1 – простое, если при его делении на любое число кроме 1 и n есть остаток.
+
+Например, 5 это простое число, оно не может быть разделено без остатка на 2, 3 и 4.
+
+Напишите код, который выводит все простые числа из интервала от 2 до n.
+
+Для n = 10 результат должен быть 2,3,5,7.
+
+P.S. Код также должен легко модифицироваться для любых других интервалов.
+
+Для всех i от 1 до 10 {
+  проверить, делится ли число i на какое-либо из чисел до него
+  если делится, то это i не подходит, берём следующее
+  если не делится, то i - простое число
 }
+*/
+// let n = 10;
 
-do {
-	console.log(num);
-	num++;
-}
-while (num <= 55);
+// nextPrime: for (let i = 2; i <= n; i++) {
+// 	// Для всех i...
+	
+// 	for (let j = 2; j < i; j++) {
+// 		// проверить, делится ли число..
+// 		console.log(`i = ${i}, j = ${j}`);
 
-for (let i = 1; i < 8; i++){
-	if (i === 6) {
-		//break;
-		continue;
-	}
-	console.log(i);
-} */
+// 		if (i % j == 0) continue nextPrime; // не подходит, берём следующее
+// 	}
+
+// 	console.log(`Простое число: ${i}`); // простое число
+// }
+
 //!Практика 015
-/* Задание на урок:
+/* 
+Задание на урок:
 
 1) Автоматизировать вопросы пользователю про фильмы при помощи цикла
 
@@ -214,7 +319,8 @@ for (let i = 1; i < 8; i++){
 "Просмотрено довольно мало фильмов", если от 10 до 30 - "Вы классический зритель", а если больше - 
 "Вы киноман". А если не подошло ни к одному варианту - "Произошла ошибка"
 
-4) Потренироваться и переписать цикл еще двумя способами*/
+4) Потренироваться и переписать цикл еще двумя способами
+*/
 /* 
 const numberOfFilms = +prompt("Сколько фильмов вы уже посмотрели", "");
 
@@ -248,6 +354,7 @@ for (let i = 0; i < 2; i++) {
 	personalMovieDB.movies[filmName] = filmRating;
 }
 
+//* через while
 let filmName,
 	filmRating,
 	i = 0;
@@ -267,7 +374,7 @@ while (i < 2) {
 }
 console.log(personalMovieDB);
 
-// ?Ивана решение
+//* Ивана решение
 for (let i = 0; i < 2; i++) {
 	const a = prompt("Один из последних просмотренных фильмов?", ""),
 		b = +prompt("На сколько оцените его?", "");
@@ -278,70 +385,144 @@ for (let i = 0; i < 2; i++) {
 	}
 }
 console.log(personalMovieDB);
-// ?конец
  */
 // ! 016 Функции, стрелочные функции
-/* // ? Function declaretion
-function showMessage(text) {
-	console.log(text);
-}
-showMessage("lil");
+// //* Function declaretion (существует до того, как вызвана, как и var интерпритатор загружает сначала функшн декларейшены и вары, а потом остальной код)
+// function showMessage(text) {
+// 	console.log(text);
+// }
+// showMessage("lil");
 
-let num = 20;
-function showMessage() {
-	num = 55;
-	return num;
-}
-showMessage();
-console.log(num);
+// let num = 20;
+// function showMessage() {
+// 	num = 55;
+// }
+// showMessage();
+// console.log(num);
 
-function calc(a, b) {
-	return a + b;
-}
-console.log(calc(5, 6));
-console.log(calc(35, 44));
+// function calc(a, b) {
+// 	return a + b; //* после return функция не выполняется
+// }
+// console.log(calc(5, 6));
+// console.log(calc(35, 44));
 
-// ? Function expression
-let bz = function (a, b, c) {
-	return a + b + c;
-};
-console.log(bz(3, 4, 2));
 
-const calk = (a, b, c) => {
-	return a + b + c;
-};
-console.log(calk(3, 4, 2));
+// function somFunc() { 
+// 	let someNum = 30;
+// 	// some code
+// 	return someNum;//* вытаскиваем из функции результат ее работы
+// }
 
-function checkAge(age) {
-	return age > 18 ? true : confirm("Родители разрешили?");
-}
-console.log(checkAge(19));
-function checkAge(age) {
-	return age > 18 || confirm("Родители разрешили?");
-}
-console.log(checkAge(19));
- */
+// const anotherNum = somFunc();
+// console.log(anotherNum);
+
+// //* Function expression (создается только тогда, когда до нее доходит поток кода, и может быть вызвана только после ее объявления)
+// let bz = function (a, b, c) {
+// 	return a + b + c;
+// };
+// console.log(bz(3, 4, 2));
+
+// function showMessage(from, text = "текст не добавлен") { //* text = "текст не добавлен" - это значение по умолчанию для параметра
+//   console.log( from + ": " + text );
+// }
+
+// showMessage("Аня"); // Аня: текст не добавлен
+
+// function showCount(count) { //* значение для параметра по умолчанию, используя оператор нулевого слияния ??
+//   // если count равен undefined или null, показать "неизвестно"
+//   console.log(count ?? "неизвестно");
+// }
+// showCount(0); // 0
+// showCount(null); // неизвестно
+// showCount(); // неизвестно
+
+// //* Стрелочная функция (не имеет своего контекста this)
+// const calk = (a, b, c) => {
+// 	return a + b + c;
+// };
+// console.log(calk(3, 4, 2));
+
+// //*Решение задаачек
+// function checkAge(age) {
+// 	return age > 18 ? true : confirm("Родители разрешили?");
+// }
+// let ageNigger = +prompt("Сколько вам лет?","");
+// console.log(ageNigger);
+// if(ageNigger != null && ageNigger != "" && !isNaN(ageNigger)){
+// 	console.log(checkAge(ageNigger));
+// } else{
+// 	console.log("Ввведите число!");
+// }
+
+// function checkAge(age) {
+// 	return age > 18 || confirm("Родители разрешили?");
+// }
+// console.log(checkAge(19));
+
+// //* Напишите функцию min(a,b), которая возвращает меньшее из чисел a и b.
+// function min(a,b){
+// 	if(a < b){
+// 		return a;
+// 	}
+// 	return b;
+// }
+// //* Вариант решения с оператором ?:
+// function min(a, b) {
+//   return a < b ? a : b;
+// }
+
+// console.log(min(2,5));
+// console.log(min(7,1));
+// console.log(min(-4,3));
+
+// //* Напишите функцию pow(x,n), которая возводит x в степень n и возвращает результат.
+
+// function pow(x,n){
+// 	return n < 1 ? alert('Степень не поддерживается') : x ** n;
+// }
+// console.log(pow(3,2))
+// console.log(pow(3,3))
+// console.log(pow(1,100))
+
+// function pow(x, n) {
+// 	x = +prompt("Введите x");
+// 	n = +prompt("Введите n");
+// 	if (x != null && x != "" && !isNaN(x) && n != null && n != "" && !isNaN(n)) { //? Проверка введенного значения преобразованного в число: если не нажали отмену, если не ввели ничего, и если не ввели не число то выполняется действие
+// 		console.log(x ** n);
+// 	} else {
+// 		console.log("Степень не поддерживается");
+// 	}
+// }
+// pow();
 
 // ! 017 Методы и свойства строк и чисел
-/* const str = "testLul",
-	arr = [1, 2, 3];
+//? Методы для строк
+// let str = "tEstLul",
+// 	arr = [1, 2, 3];
 
-console.log(arr.length);
-const someText =
-		"Далеко-далеко за словесными, горами в стране гласных и согласных живут рыбные тексты. Языкового грустный ipsum дорогу необходимыми одна. Великий не семантика, предложения журчит ты проектах выйти свою возвращайся злых заголовок подзаголовок что?",
-	slicedText = someText.indexOf("рыбные");
+// console.log(str.toUpperCase()); //* Все заглавные
+// console.log(str.toLowerCase()); //* Все заглавные
+// console.log(arr.length); //* Длинна строки
+// console.dir(Number); //* все свойства и методы у числа
 
-console.log(someText.slice(slicedText, -1));
-console.log(someText.substring(slicedText, slicedText + 6));
-console.log(someText.substr(slicedText, slicedText + 6));
+// const someText =
+// 		"Далеко-далеко за словесными, горами в стране гласных и согласных живут рыбные тексты. Языкового грустный ipsum дорогу необходимыми одна. Великий не семантика, предложения журчит ты проектах выйти свою возвращайся злых заголовок подзаголовок что?",
+// 	slicedText = someText.indexOf("далеко"); //? с какого символа в строке по порядку начинается соответствие
 
-const num = 15.5;
-console.log(Math.round(num));
+// console.log(slicedText); //* соответствие с 8 символа, но выдает индекс предыдущего символа
+// console.log(someText.slice(slicedText)); //* вырезаем весь текст первый аргумент откуда и второй аргумент до куда (-1 до конца) !Важно не включая последний по номеру, тоесть нужно указывать следующий индекс после последнего нужного
+// console.log(someText.substring(slicedText, slicedText + 7)); //* тоже самое но не поддерживает отрицательные значения
+// console.log(someText.substr(slicedText, 6)); //* первый аргумент с какого символа вырезаем, второй аргумент сколько символов после этого вырезаем
 
-const numQ = "15.9px";
-console.log(parseInt(numQ));
-console.log(parseFloat(numQ));
-console.log(Math.round(parseFloat(numQ))); */
+//? Методы для чисел
+// const num = 15.5;
+// console.log(Math.round(num)); //* Округление к ближайшему целому
+
+// const numQ = "15.9px";
+// console.log(parseInt(numQ)); //* Переводит число в другую систему исчесления и приводит к целому значения после точки отбрасываются без округления (на выходе получается числовой тип данных)
+// console.log(parseFloat(numQ)); //*Переводит число в другую систему исчесления и приводит к значению с плавающей точкой (на выходе получается числовой тип данных)
+// console.log(Math.round(parseFloat(numQ))); 
+
 //!Практика 018
 /* Задание на урок:
 
@@ -456,202 +637,254 @@ while (i < 2) {
 console.log(personalMovieDB); */
 
 // ! 019 Callback функции
-/* function iLern(lang, callback) {
-	console.log(`Я учу: ${lang}`);
-	callback();
-}
-function afterTimeout() {
-	console.log("After timeOut!");
-}
-iLern("JS", afterTimeout); */
+//? Если функции идут в коде одна за другой это не значит что так же они и отработают
+//todo Пример неправельного порядка выполнения функций
+// function firstFunc(){
+// 	setTimeout(function(){
+// 		console.log("Выполнена функция 1");
+// 	}, 1000);
+// }
+// function secondFunc() {
+// 	console.log("Выполнена функция 2");
+// }
+// firstFunc();
+// secondFunc();
+
+//todo Пример правильного порядка порядка выполнения функций при помощи калбека
+// function iLern(lang, callback) { //*callback - стандарт для вызова колбек функций
+// 	console.log(`Я учу: ${lang}`);
+// 	callback(); //* если поставить коблек функцию перед каким либо кодом, то сначала выполниться она а уж потом код
+// }
+// function afterTimeout() {
+// 	setTimeout(function () {
+// 		console.log("Строго после выполнить!");
+// 	}, 500);
+// }
+// iLern("JS", afterTimeout); //todo ВАЖНО! передаем код вункции но не вызываем ее, тоесть без "()"
+
 // ! 020 Объекты, деструктуризация объектов (ES6)
-/* const options = {
-	name: "test",
-	width: 1024,
-	height: 1024,
-	colors: {
-		border: "black",
-		bg: "red",
-	},
-	makeTest: function () {
-		// TODO Это метод, тоесть функция внутри обьекта
-		console.log("Test");
-	},
-};
-options.makeTest();
-// TODO Деструктуризация объектов (вытащить данные обьекта в переменные)
-const { border, bg } = options.colors; // TODO создали 2 переменные из объекта colors
-console.log(border);
-console.log(bg);
 
-console.log(Object.keys(options).length);
-// TODO Object.keys(название объекта) --выдает массив со всеми свойствами объекта.
-// TODO .length --колличество ключей
+// const options = { //todo если ключи числовые они будут идти в порядке от меньшего числа к большему, если буквенные, то в порядке как они заданы в объекте
+	//* создаем новый объект options
+// 	name: "test", //* ключ : значение, или свойство : значение
+// 	width: 1024,
+// 	height: 1024,
+// 	colors: { //* создаем новый объект colors внутри объекта options
+// 		border: "black",
+// 		bg: "red",
+// 		nice: {
+// 			very: true,
+// 			bed: false,
+// 		},
+// 	},
+// 	makeTest: function () {//* Это метод, тоесть функция внутри обьекта
+// 		console.log("Test");
+// 	},
+// };
+// options.makeTest();//todo вызов метода объекта
+// const {border: br, bg, nice, color="blue"} = options.colors; //TODO !деструктуризация объекта! создали 4 переменные из объекта colors (border переименовали в br, и добавили новую переменную color="blue")
+// console.log(br);
+// console.log(bg);
+// console.log(nice);
+// console.log(color);
 
-console.log(options.colors.bg);
-console.log(options["colors"]["bg"]);
-delete options.name; // TODO Удалить свойство объекта
-console.log(options);
+// console.log(Object.keys(options)); //* Object.keys(название объекта) --выдает массив со всеми свойствами объекта.
+// console.log(Object.keys(options).length);//* Object.keys(название объекта) --выдает массив со всеми свойствами объекта. (.length --колличество ключей на верхнем уровне тоесть на первом уровне вложенности)
 
-for (let key in options) {
-	// TODO перебор свойств обьекта
-	if (typeof options[key] === "object") {
-		// TODO свойство которое тоже обьект
-		for (let i in options[key]) {
-			// TODO перебор его значений
-			console.log(`Свойство ${i} имеет значение ${options[key][i]}`);
-		}
-	} else {
-		// TODO перебор обычных свойств
-		console.log(`Свойство ${key} имеет значение ${options[key]}`);
-	}
-}
- */
+// console.log(options.colors.bg); //* Это и нижнее одно и тоже вывод значение свойства bg для объекта colors, который внутри объекта options
+// console.log(options["colors"]["bg"]);
+
+// delete options.name; //todo Удалить свойство объекта
+// console.log(options);
+
+//let counter = 0; //todo создаем счетчик колличества элементов в объекте
+// for (let key in options) { //? перевбор ключей объекта
+// 	//todo перебор свойств обьекта
+// 	if (typeof options[key] === "object") {
+// 		//* свойство которое тоже обьект
+// 		for (let i in options[key]) {
+// 			//* перебор его значений
+// 			console.log(`Свойство ${i} имеет значение ${options[key][i]}`);
+// 			//counter++; //todo Увеличиваем значение счетчика на 1
+// 		}
+// 	} else {
+// 		//* перебор обычных свойств
+// 		console.log(`Свойство ${key} имеет значение ${options[key]}`);
+// 		//counter++; //todo Увеличиваем значение счетчика на 1
+// 	}
+// 	console.log(counter); //todo не подсчитает обект в объекте!
+// }
+
+//? Еще пример деструктуризации
+// let optIons = {
+//   size: {
+//     width: 100,
+//     height: 200
+//   },
+//   items: ["Пончик", "Пирожное"]
+// }
+
+// let { title="Меню", size: {width, height}, items: [item1, item2] } = optIons; //todo Деструктуризация
+
+//* Меню 100 200 Пончик Пирожное
+// console.log(title);  // Меню
+// console.log(width);  // 100
+// console.log(height); // 200
+// console.log(item1);  // Пончик
+// console.log(item2);  // Пирожное
+
 // ! 021 Массивы и псевдомассивы
-/* 
-const arr = [20, 10, 44, 32];
-arr.sort(compareNum);
-function compareNum(a, b) {
-	// TODO функция для сортировки цифр в массиве по порядку
-	return a - b;
-}
-console.log(arr);
+//! Псевдомассивы выглядят как обыкнавенные массивы, но при этом не имеют никаких методов 
 
-arr.forEach(function (item, i, arr) {
-	// TODO --вывод всех элементов массива (перебор) используем всегда (кроме когда нужно остановить в определенном месте (break) или пропустить итерацию (continiue) тогда используем FOR)
-	console.log(
-		`${i}-порядковый номер (реальный индекс),${item}-значение соответствующее этому порядковому номеру, ${arr}-собственно весь массив`
-	);
-});
+// const arr = [20, 10, 44, 32];
+// arr.pop(); //* --удаление последнего элемента массива
+// arr.push(10); //* --добавление элемента в конец массива
+// console.log(arr);
 
-for (let value of arr) {
-	// TODO --вывод всех элементов массива (перебор) через for_of
-	console.log(value);
-}
-for (let i = 0; i < arr.length; i++) {
-	// TODO --вывод всех элементов массива (перебор) через обычный цикл
-	console.log(arr[i]);
-	console.log(`${i + 1}-й элемент массива равен: ${arr[i]}`);
-}
-arr.pop();
-// TODO --удаление последнего элемента массива
-arr.push(10);
-// TODO --добавление элемента в конец массива
+//todo !Функция для сортировки цифр в массиве по порядку
+// arr.sort(compareNum);
+// function compareNum(a, b) { 
+// 	return a - b;
+// }
+// console.log(arr);
 
-const str = "sahjkdkj, asdasdj, asdjaslkd, askdoaskd";
-const someShit = str.split(", ");
-someShit.sort();
-// TODO --сортерует по алфовиту
-console.log(someShit);
-// TODO --распиливает строку по ключу на отдельные элементы массива
-console.log(someShit);
-console.log(someShit.join("# "));
-// TODO --слепить элементы массива в строку через разделитель
- */
+//todo 3 варианта перебора массива
+//todo 1 вариант ОСНОВА (forEach())  --вывод всех элементов массива (перебор) используем всегда (кроме когда нужно остановить в определенном месте (break) или пропустить итерацию (continiue) тогда используем FOR OFF)
+// arr.forEach(function (item, i, arr) { 
+// 	console.log(
+// 		`${i}-порядковый номер (реальный индекс),${item}-значение соответствующее этому порядковому номеру, ${arr}-собственно весь массив`
+// 	);
+// });
+
+//todo 2 вариант ОСНОВА (for of)
+// for (let value of arr) { //* --вывод всех элементов массива (перебор) через for_of
+// 	console.log(value);
+// }
+
+//todo 3 вариант ОСНОВА (for)
+// for (let i = 0; i < arr.length; i++) { //* --вывод всех элементов массива (перебор) через обычный цикл
+// 	console.log(arr[i]);
+// 	console.log(`${i + 1}-й элемент массива равен: ${arr[i]}`);
+// }
+
+// const str = "sahjkdkj, asdasdj, asdjaslkd, askdoaskd";
+// for (let value of str) { //* --вывод всех элементов массива (перебор) посимвольно через for_of
+// 	console.log(value);
+// }
+// const someShit = str.split(", "); //* преобразует строку в массив в ковычках указываем разделитель
+// console.log(someShit);
+// someShit.sort(); //* --сортерует по алфовиту (сортерует как строки, поэтому числа он приводит к строкам и сортерует (22 будет раньше чем 3))
+// console.log(someShit);
+// console.log(someShit.join("# ")); //* --слепить элементы массива в строку через разделитель
+
 // ! 022 Передача по ссылке или по значению, Spread оператор (ES6-ES9)
 
-// ! передача по значению работает только для примитивных типов данных (числа, строки, булевые данные), при работе с объектами и массивами передача по ссылке
-/* 
-let a = 10,
-	b = 20;
-b = a;
-b += 4;
-console.log(a);
-console.log(b);
-// TODO примитивы выше передают данные
-const obj = {
-	a: 5,
-	b: 10,
-	c: 20,
-};
-const copyObj = obj; //TODO передается не сам обьект(данные обьекта, а просто ссылка на него
-copyObj.a = 20;
-console.log(obj);
-console.log(copyObj);// TODO обект obj изменился по ссылке
+// ! передача по значению работает только для примитивных типов данных (числа, строки, булевые данные), при работе с объектами передача по ссылке
+// let a = 10,
+// 	b = 20;
+// b = a;
+// b += 4;
+// console.log(a);
+// console.log(b);// TODO примитивы выше передают данные
 
+// const obj = {
+// 	a: 5,
+// 	b: 10,
+// 	c: 20,
+// };
+// const copyObj = obj; //TODO передается не сам обьект(данные) обьекта, а просто ссылка на него
+// copyObj.a = 20;
+// console.log(obj);
+// console.log(copyObj);// TODO обект obj изменился по ссылке
 
 // ? Создание поверхносной копии обекта (первый уровень вложенности (тоесть сложные объекты внутри будут также пеедаваться по ссылке)) при помощи цикла.
-const obj = {
-	a: 5,
-	b: 10,
-	c: 20,
-};
+// const obj2 = {
+// 	a: 5,
+// 	b: 10,
+// 	c: {
+// 		x: "bz",
+// 		t: {
+// 			zz: "bb"
+// 		}
+// 	}
+// };
 
-function copy(mainObj) {
-	// TODO функция которая копирует и возвращает объект
-	let objCopy = {};
+// function copy(mainObj) {
+// TODO функция которая копирует и возвращает объект !!создает поверхносную копию объекта, все внутренние объекты или массивы передаются по ссылке
+// 	let objCopy = {};
 
-	let key;
-	for (key in mainObj) {
-		objCopy[key] = mainObj[key];
-	}
-	return objCopy;
-}
-const newObj = copy(obj);
-newObj.a = 100;
-console.log(obj);
-console.log(newObj);
+// 	let key;
+// 	for (key in mainObj) {
+// 		objCopy[key] = mainObj[key];
+// 	}
+// 	return objCopy;
+// }
+// const newObj = copy(obj2);
+// newObj.a = 100;
+// console.log(obj2);
+// console.log(newObj);
 
-const addToObj = {
-	d: 32,
-	e: 0,
-};
-console.log(Object.assign(obj, addToObj));
-// ? Добавление елементов к обьекту. Также создает независимую копию объекта
-console.log(Object.assign({}, obj));
-// ? Независимая поверхносная копия объекта obj
+// const addToObj = {
+// 	d: 32,
+// 	e: 0
+// };
+// console.log(Object.assign(obj2, addToObj));// ? Добавление елементов к обьекту. Также создает независимую копию объекта
+// console.log(Object.assign({}, obj2));// ? Независимая поверхносная копия объекта obj2
 
 // ? Создание поверхносной копии массива
-const arr = ['a', 'b', 'c'],
-		copyArr = arr.slice();
-copyArr[1] = 2;
-console.log(arr);
-console.log(copyArr);
+// const arr = ['a', 'b', 'c'],
+// 		copyArr = arr.slice();
+// copyArr[1] = 2;
+// console.log(arr);
+// console.log(copyArr);
 
 // ! Создание поверхносных копий (современных) при помощи Spread оператора ES6-ES9
-const nums = [1, 2, 3, 4],
-	words = ["vova", "pipka", "tr9s"],
-	numsWords = [...nums, ...words, "da", 2]; // ? разбивает массивы на значения и вставляет копию
-numsWords[2] = "asnhdjashd";
-console.log(numsWords);
-console.log(nums);
+// const nums = [1, 2, 3, 4],
+// 	words = ["vova", "pipka", "tr9s"],
+// 	numsWords = [...nums, ...words, "da", 2]; // ? разбивает массивы на значения и вставляет копию
+// numsWords[2] = "asnhdjashd";
+// console.log(numsWords);
+// console.log(nums);
 // ? Копирование массива
-const copyMassive = [...numsWords];
+// const copyMassive = [...numsWords];
 
-// ? копирование объекта с помощью Spread оператора
-const objN = {
-	d: 32,
-	e: 0,
-};
-const objNcopy = { ...objN };
- */
+// ? копирование объекта
+// const objN = {
+// 	d: 32,
+// 	e: 0
+// };
+// const objNcopy = { ...objN };
+// objNcopy.e = "lol";
+// console.log(objN);
+// console.log(objNcopy);
+
 // ! 023 Основы ООП, прототипно-ориентированное наследование
-/* 
 // ! Любые методы примененные даже к простым данным преобразовуют их в обект, выполняются методы и возвращается такой же простой тип данных
+// console.dir([1, 2, 3]); //* В браузере цепочка наследования от null__proto__Object.prototype__proto__Array.prototype__proto__[1, 2, 3] по сути является экземпляром прототипа Array.prototype, который в свою очередь является экземпляром объекта Array.prototype
 
-let str = "some str",
-	strObj = new String(str); //? приминение метода стринг к строке сделало ее объектом
-console.log(typeof str);
-console.log(typeof strObj);
+// let str = "some str",
+// 	strObj = new String(str); //? приминение метода стринг к строке сделало ее объектом
+// console.log(typeof(str));
+// console.log(typeof(strObj));
 
-const protoObj = {
-	width: 500,
-	height: 300,
-	backgroundColor: "#fff",
-	color: "black",
-	seyHello: function () {
-		console.log("Hello!");
-	},
-};
-const obj = Object.create(protoObj); // ? создание объекта и присваивание ему прототипа
+// const protoObj = {
+// 	width: 500,
+// 	height: 300,
+// 	backgroundColor: "#fff",
+// 	color: "black",
+// 	seyHello: function () {
+// 		console.log("Hello!");
+// 	}
+// };
 // const obj = {
 // 	height: 100,
 // };
 // obj.__proto__ = protoObj; // ? старый способ установки прототипа объекта
 // Object.setPrototypeOf(obj, protoObj); //? новый способ
-console.log(obj.color);
-obj.seyHello();
- */
+// const obj = Object.create(protoObj); // ? создание объекта и присваивание ему прототипа
+// console.log(obj.color);
+// obj.seyHello();
+
 
 // ! 024 Практика (Объекты и методы)
 /* Задание на урок:
@@ -667,120 +900,117 @@ obj.seyHello();
 Если он это сделал - возвращать его к этому же вопросу. После того, как все жанры введены - 
 при помощи метода forEach вывести в консоль сообщения в таком виде:
 "Любимый жанр #(номер по порядку, начиная с 1) - это (название из массива)"*/
-/* 
-const personalMovieDB = {
-	count: 0,
-	movies: {},
-	actors: {},
-	genres: [],
-	privat: false,
-	start: function () {
-		personalMovieDB.count = +prompt("Сколько фильмов вы уже посмотрели", "");
-		while (!personalMovieDB.count) {
-			personalMovieDB.count = +prompt(
-				"Сколько фильмов вы уже посмотрели",
-				""
-			);
-		}
-	},
-	writeYourGenres: function () {
-		for (let i = 0; i < 3; i++) {
-			let personalGenres = prompt(
-				`Ваш любимый жанр под номером ${i + 1}`,
-				""
-			);
-			if (!personalGenres) {
-				i--;
-			} else {
-				personalMovieDB.genres[i] = personalGenres;
-				console.log(
-					`Ваш любимый жанр под номером ${i + 1}: ${personalGenres}`
-				);
-			}
-		}
-		personalMovieDB.genres.forEach(function (item, i) {
-			// TODO --вывод всех элементов массива (перебор) используем всегда (кроме когда нужно остановить в определенном месте (break) или пропустить итерацию (continiue) тогда используем FOR)
-			console.log(`Любимый жанр #${i + 1} - это ${item}`);
-		});
-	},
-	rememberMyFilms: function () {
-		for (let i = 0; i < 2; i++) {
-			let filmName = prompt("Один из последних просмотренных фильмов?", ""),
-				filmRating = +prompt("На сколько оцените его?", "");
-			if (!filmName || !filmRating || filmName.length > 50) {
-				console.log("Введите данные");
-				i--;
-				continue;
-			}
-			personalMovieDB.movies[filmName] = filmRating;
-		}
-	},
-	detectPersonalLevel: function () {
-		if (personalMovieDB.count < 10) {
-			console.log("Просмотрено довольно мало фильмов");
-		} else if (personalMovieDB.count <= 30) {
-			console.log("Вы классический зритель");
-		} else if (personalMovieDB.count > 30) {
-			console.log("Вы киноман");
-		} else {
-			console.log("Произошла ошибка");
-		}
-	},
-	toggleVisibleMyDB: function () {
-		if (personalMovieDB.privat) {
-			personalMovieDB.privat = false;
-		} else {
-			personalMovieDB.privat = true;
-		}
-	},
-	showMyDB: function () {
-		// ?personalMovieDB.privat = confirm("Сделать вашу базу данны приватной?");
-		if (!personalMovieDB.privat) {
-			console.log(personalMovieDB);
-		}
-	},
-};
+
+// const personalMovieDB = {
+// 	count: 0,
+// 	movies: {},
+// 	actors: {},
+// 	genres: [],
+// 	privat: false,
+// 	start: function () {
+// 		personalMovieDB.count = +prompt("Сколько фильмов вы уже посмотрели", "");
+// 		while (!personalMovieDB.count) {
+// 			personalMovieDB.count = +prompt(
+// 				"Сколько фильмов вы уже посмотрели",
+// 				""
+// 			);
+// 		}
+// 	},
+// 	writeYourGenres: function () {
+// 		for (let i = 0; i < 3; i++) {
+// 			let personalGenres = prompt(`Ваш любимый жанр под номером ${i + 1}`,"");
+
+// 			if (!personalGenres) {
+// 				console.log("Вы ввели неверные данные!")
+// 				i--;
+// 			} else {
+// 				personalMovieDB.genres[i] = personalGenres;
+// 			}
+// 		};
+// 		personalMovieDB.genres.forEach(function (item, i) {// TODO --вывод всех элементов массива (перебор) используем всегда (кроме когда нужно остановить в определенном месте (break) или пропустить итерацию (continiue) тогда используем FOR)
+// 			console.log(`Любимый жанр #${i + 1} - это ${item}`);
+// 		});
+// 	},
+// 	rememberMyFilms: function () {
+// 		for (let i = 0; i < 2; i++) {
+// 			let filmName = prompt("Один из последних просмотренных фильмов?", ""),
+// 				filmRating = +prompt("На сколько оцените его?", "");
+// 			if (!filmName || !filmRating || filmName.length > 50) {
+// 				console.log("Введите данные");
+// 				i--;
+// 				continue;
+// 			}
+// 			personalMovieDB.movies[filmName] = filmRating;
+// 		}
+// 	},
+// 	detectPersonalLevel: function () {
+// 		if (personalMovieDB.count < 10) {
+// 			console.log("Просмотрено довольно мало фильмов");
+// 		} else if (personalMovieDB.count <= 30) {
+// 			console.log("Вы классический зритель");
+// 		} else if (personalMovieDB.count > 30) {
+// 			console.log("Вы киноман");
+// 		} else {
+// 			console.log("Произошла ошибка");
+// 		}
+// 	},
+// 	toggleVisibleMyDB: function () {
+// 		if (personalMovieDB.privat) {
+// 			personalMovieDB.privat = false;
+// 		} else {
+// 			personalMovieDB.privat = true;
+// 		}
+// 	},
+// 	showMyDB: function () {// ?personalMovieDB.privat = confirm("Сделать вашу базу данны приватной?");
+// 		if (!personalMovieDB.privat) {
+// 			console.log(personalMovieDB);
+// 		}
+// 	},
+// };
 // personalMovieDB.start();
 // personalMovieDB.detectPersonalLevel();
 // personalMovieDB.writeYourGenres();
 // personalMovieDB.rememberMyFilms();
 // personalMovieDB.toggleVisibleMyDB();
 // personalMovieDB.showMyDB();
- */
+
+// ! 025 Отлавливаем ошибки в своем коде при помощи консоли разработчика. Breakpoints
+// debugger; // *создание брейкпоинта в любом месте кода
 
 // ! 026 Динамическая типизация в JS
-/* 
+// ! Динамическая типизация это возможность одного типа данных превращаться в другой
+/*
 // ? to String
-
-// 1)
+//* 1)
 console.log(typeof String(null));
 console.log(typeof String(4));
-// 2) конкатинация
+//* 2) конкатинация
 console.log(typeof (4 + ""));
 
 const num = 5;
-console.log("http://fb.com/catalog/" + num);
+console.log("http://fb.com/catalog/" + num); //* устаревшее
+console.log(`http://fb.com/catalog/${num}`); //* как надо
 
 const fontSize = 26 + "px";
 
 // ? to Number
-// 1)
+//* 1)
 console.log(typeof Number("null"));
 console.log(Number("null"));
 
-// 2) унарный плюс
-console.log(typeof +"5");
-
-// 3)
+//* 3)
 console.log(typeof parseInt("15px", 10));
 console.log(parseInt("15px", 10));
 
+//* 2) унарный плюс как надо
+console.log(typeof +"5");
+
 // ? To boolean
-// * что всегда превращается в false:
-// *-- 0, '', null, undefind, NaN;
-// 1)
+// ! что всегда превращается в false:
+// !  0, '', null, undefind, NaN;
+//* 1)
 let switcher = null;
-if (switcher) {
+if (!switcher) {
 	console.log("Not working....");
 }
 switcher = 1;
@@ -788,21 +1018,24 @@ if (switcher) {
 	console.log("Working....");
 }
 
-// 2)
-console.log(Boolean("null"));
-console.log(Boolean(null));
+//* 2)
+console.log(typeof Boolean("null"));
+console.log(typeof Boolean(null));
 
-// 3)
-console.log(Boolean(!!"null"));
-console.log(Boolean(!!null));
- */
+//* 3)
+console.log(typeof !!"null");
+console.log(typeof !!null);
+
+console.log(!!"null");
+console.log(!!null);
+*/
 
 // ! 027 задача по пониманию типов данных
 //Какое будет выведено значение: let x = 5; alert( x++ ); ?
 //5
 
 //Чему равно такое выражение: [ ] + false - null + true ?
-// console.log(typeof([ ] + false)); // пустой массив приводится в строку + фалсе к строке выходит строка "false"
+// console.log(typeof([ ] + false)); //* пустой массив приводится в строку + фалсе к строке выходит строка "false"
 // console.log(typeof('false' - null)); // математ. действие к строке выходит NaN
 // console.log(typeof(NaN + true)); // NaN + boolean = NaN
 // Что выведет этот код: let y = 1; let x = y = 2; alert(x); ?
@@ -811,26 +1044,27 @@ console.log(Boolean(!!null));
 // Чему равна сумма [ ] + 1 + 2?
 // '12'
 
-// Что выведет этот код: alert( "1"[0] )?
-// 1
+// Что выведет этот код: alert( "1"[0] )? //*К каждому символу элементу строки можно обратьиться по его индексу
+// "1"
 
 // Чему равно 2 && 1 && null && 0 && undefined ?
-// ? оператор И (&&) запинается на лжи и выводит ее типа как через ретурн
-// ? оператор ИЛИ (||) запинается на правде
+// ! оператор И (&&) запинается на лжи и выводит ее типа как через ретурн
+// ! оператор ИЛИ (||) запинается на правде
 // null
 
 // Есть ли разница между выражениями? !!( a && b ) и (a && b)?
 // нет
 
+//                                         3
 // Что выведет этот код: alert( null || 2 && 3 || 4 ); ?
-// ? оператор ИЛИ (||) запинается на правде
+// ! У И (&&) приоритет выполнения выше, следовательно она будет выполняться первее (оператор ИЛИ (||) запинается на правде) 
 // 3
 
 // a = [1, 2, 3]; b = [1, 2, 3]; Правда ли что a == b ?
-// не верно, поскольку сравниваются не элементы массивов а сами массивы, и они разные
+//* не верно, поскольку сравниваются не элементы массивов а сами массивы, и они разные
 
 // Что выведет этот код: alert( +"Infinity" ); ?
-// 1
+// Infinity
 // console.log(typeof(+"Infinity"));
 // Infinity - число;
 
@@ -841,96 +1075,105 @@ console.log(Boolean(!!null));
 // 2
 
 // ! 028 Получение элементов со страницы
-/* 
+
 // ? Устаревшие
-const box = document.getElementById("box");
-console.log(box);
+// const box = document.getElementById("box");
+// console.log(box);
 
-const btns = document.getElementsByTagName("button");
-console.log(btns[1]);
+// const btns = document.getElementsByTagName("button"); //* Всегда получаем ШТМЛ коллекцию (псевдомассив) со всеми кнопками на странице, даже если кнопка 1
+// console.log(btns[1]); //* выводим в консоль 2ю кнопку
 
-const circles = document.getElementsByClassName("circle");
-console.log(circles);
+// const circles = document.getElementsByClassName("circle");//* Всегда получаем ШТМЛ коллекцию (псевдомассив) со всеми элементами на странице, даже если он 1
+// console.log(circles);
 
 // ? Новые
-const hearts = document.querySelectorAll(".heart");
-hearts.forEach((item) => {
-	console.log(item);
-});
+// const hearts = document.querySelectorAll(".heart"); //* Получаем NodeList у которого есть 1 метод forEach
+// hearts.forEach((item) => {
+// 	console.log(item);
+// });
 
-const oneHeart = document.querySelector(".wrapper");
-console.log(oneHeart);
- */
+// const oneHeart = document.querySelector(".wrapper");
+// console.log(oneHeart);
+
 
 // ! 029 Действия с элементами на странице
-/* 
-const box = document.getElementById("box"),
-	btns = document.getElementsByTagName("button"),
-	circles = document.getElementsByClassName("circle"),
-	wrapper = document.querySelector(".wrapper"),
-	hearts = wrapper.querySelectorAll(".heart"),
-	oneHeart = wrapper.querySelector(".heart");
 
-box.style.backgroundColor = "#0f0";
-box.style.width = "200px";
+// const box = document.getElementById("box"),
+// 	btns = document.getElementsByTagName("button"),
+// 	circles = document.getElementsByClassName("circle"),
+// 	wrapper = document.querySelector(".wrapper"),
+// 	hearts = wrapper.querySelectorAll(".heart"),
+// 	oneHeart = wrapper.querySelector(".heart");
 
-box.style.cssText = "background-color: red; width: 500px";
+// console.dir(box); //*в консоле выводим свойства блока
+// box.style.backgroundColor = "#0f0"; //* добавляем инлайн стиль
+// box.style.width = "200px"; //* добавляем инлайн стиль
 
-btns[1].style.borderRadius = "100%";
+// box.style.cssText = "background-color: red; width: 500px"; //* добавляем много стилей одной командой
+// let someWidTh = 100;
+// box.style.cssText = `background-color: red; width: ${someWidTh}px`; //* добавляем много стилей одной командой с добавлением переменной
 
-for (let i = 0; i < hearts.length; i++) {
-	hearts[i].style.backgroundColor = "blue";
-}
-hearts.forEach((item) => {
-	item.style.backgroundColor = "#0f0";
-});
+// btns[4].style.borderRadius = "100%";
 
-const div = document.createElement("div"); //создание Дива в коде
-div.classList.add("black"); //добавление этому диву класса
-wrapper.prepend(div); //вставка дива в ДОМ (в начало враппера)
-wrapper.append(div); //вставка дива в ДОМ (в конец враппера)
+// for (let i = 0; i < hearts.length; i++) { //* Старый вариант //*применить стили сразу ко всем элементам
+// 	hearts[i].style.backgroundColor = "blue";
+// }
+// hearts.forEach((item) => { //*применить стили сразу ко всем элементам
+// 	item.style.backgroundColor = "#0f0";
+// });
 
-wrapper.insertBefore(div, hearts[1]); //устаревшая вставка что вставляем (див), и куда вставляем до 2го элемента сердца.
+// const div = document.createElement("div"); //* создание Дива в коде JS но не на странице
+// const text = document.createTextNode("Какой-то текст"); //* Создание текстовой ноды (применяется редко)
+// div.classList.add("black"); //* добавление этому диву класса 
 
-hearts[1].before(div); //вставка до элемента
-hearts[0].after(div); //вставка после элемента
+// hearts[1].before(div);
+// div.innerHTML = "<h1>Hellow world!</h1>"; //*добавление ШТМЛ внутри блока
+// div.textContent = "Hellow!"; //*добавление текста внутри блока
+// div.insertAdjacentHTML('beforebegin','<h2>Hellow</h2>');
 
-circles[0].remove(); //del
-wrapper.removeChild(hearts[1]); //удаление старое
+// wrapper.prepend(div); //* вставка дива в ДОМ (в начало враппера)
+// wrapper.append(div); //* вставка дива в ДОМ (в конец враппера)
 
-hearts[1].replaceWith(circles[0]); //заменить один элемент другим
-wrapper.replaceChild(circles[0,hearts[0]]); //замена старая
+// wrapper.insertBefore(div, hearts[1]); //* устаревшая вставка что вставляем (див), и куда вставляем до 2го элемента сердца.
 
-hearts[1].before(div);
-div.innerHTML = "<h1>Hellow world!</h1>";
-div.textContent = "Hellow!";
-div.insertAdjacentHTML('beforebegin','<h2>Hellow</h2>');
- */
+// hearts[1].before(div); //* вставка до элемента
+// hearts[0].after(div); //* вставка после элемента
+
+// circles[0].remove(); //* del
+// wrapper.removeChild(hearts[1]); //* удаление старое
+
+// hearts[0].replaceWith(circles[0]); //* заменить один элемент другим
+// wrapper.replaceChild(circles[0], hearts[0]); //* замена старая
 
 //! 031 События и их обработчики
-/* 
-const btn1 = document.querySelector(".btn1"),
-	btn2 = document.querySelector(".btn2"),
-	overlay = document.querySelector(".btn_wrapper"),
-	btn3 = overlay.querySelector(".btn3"),
-	btns = document.querySelectorAll("button");
- */
+
+// const btn1 = document.querySelector(".btn1"),
+// 	btn2 = document.querySelector(".btn2"),
+// 	overlay = document.querySelector(".btn_wrapper"),
+// 	btn3 = overlay.querySelector(".btn3"),
+// 	btns = document.querySelectorAll("button");
+
 // btn1.onclick = () => {
 // 	alert("click");
 // };
 // btn1.addEventListener("click", () => {
 // 	console.log("click");
 // });
+// btn1.addEventListener("click", () => {
+// 	console.log("click2");
+// });
 
-// btn1.addEventListener("mouseenter", (event) => {
-// 	console.log(event.target);
-// 	// console.log("mausenter (hover)");
+// btns[2].addEventListener("mouseenter", (event) => {
+// 	event.target.innerHTML = "222";
+// });
+// btns[2].addEventListener("click", (event) => {
+// 	event.target.innerHTML = "3";
 // });
 
 // let i = 0;
-// const chengeColorElem = (e) => {
-// ? добавление и убирание обработчика после отработки
+// const chengeColorElem = (e) => { //* добавление и убирание обработчика по условию
 // 	console.log(e.target);
+// 	e.target.style.backgroundColor = "#0f0";
 // 	i++;
 // 	if (i == 1) {
 // 		btn2.removeEventListener("click", chengeColorElem);
@@ -938,167 +1181,195 @@ const btn1 = document.querySelector(".btn1"),
 // };
 // btn2.addEventListener("click", chengeColorElem);
 
-// const nElemListeners = (e) => {
+
+// const nElemListeners = (e) => { //! всплытие событий - это когда событие происходит сначала на самом глубоком уровне вложенности, а птом для всех вложенностей выше, если присвоены обработчики
 // 	console.log(e.target);
 // 	console.log(e.currentTarget);
 // 	console.log(e.type);
 // };
-// btns.forEach((btn) => {
-// 	// ? обработчик на все кнопки
-// 	btn.addEventListener("click", nElemListeners, { once: true }); //? 3й параметр который передаем аддЭвентЛис это опция (once - выполнить один раз)
+// btns.forEach(btn => {//* обработчик на все кнопки
+// 	btn.addEventListener("click", nElemListeners, { once: true }); //* 3й параметр который передаем аддЭвентЛис это опция (once - выполнить один раз для каждой кнопки)
 // });
-// const btn = document.querySelector('button');
-
-/* 
-function random(number) {
-	//? возвращает рандомный цвет
-	return Math.floor(Math.random() * (number + 1));
-}
-
-const funcClick = function () {
-	const rndCol =
-		"rgb(" + random(255) + "," + random(255) + "," + random(255) + ")";
-	this.style.backgroundColor = rndCol;
-};
-btn2.addEventListener("click", funcClick);
- */
 // btn3.addEventListener("click", nElemListeners);
 // overlay.addEventListener("click", nElemListeners);
 
+// function randomInt() { //? возвращает рандомное число от 0 до 255
+// 	return Math.floor(Math.random() * (255 + 1));
+// }
+// const funcClick = (e) => { //
+// 	e.target.style.backgroundColor = `rgb(${randomInt()},${randomInt()},${randomInt()})`;
+// 	// e.currentTarget.textContent = randomInt();
+// };
+// btn3.addEventListener("click", funcClick);
+// overlay.addEventListener("click", funcClick);
+
+
 // const link = document.querySelector("a");
 // link.addEventListener("click", (e) => {
-// 	e.preventDefault();// ? отмена событий по умолчанию
+// 	e.preventDefault();// * отмена событий по умолчанию
 // 	console.log(e.target);
 // });
 
 // ! 032 Навигация по DOM - элементам, data-атрибуты, преимущество for_of
 // console.log(document.head);
-// console.log(document.documentElement);
-// console.log(document.body.childNodes);
-// console.log(document.body.firstChild);
-// console.log(document.body.firstElementChild);
+// console.log(document.documentElement); //* все элементы на странице (сам тег html и его внутренности)
+// console.log(document.body.childNodes); //* все дети (внутренности) боди 
+// console.log(document.body.firstChild); //* первый ребенок 1й блок в бади (это символ переноса строки)
+// console.log(document.body.firstElementChild);//* первый ребенок 1й блок в бади который элемент
 // console.log(document.body.lastChild);
-// console.log(document.body.lastElementChild);
+// console.log(document.body.lastElementChild);//* последний ребенок 1й блок в бади который элемент
 
-// console.log(document.querySelector('#current').parentNode);
-// console.log(document.querySelector('#current').parentElement);
+// console.log(document.querySelector('#current').parentNode); //* родитель элемента который может быть каким-то текстом или переносом строки
+// console.log(document.querySelector('#current').parentElement);//* родитель элемента который не перенос строки
 
-// console.log(document.querySelector('data-current="3"').nextElementSibling);
+//* Дата атребуты синтаксис слово data-... рандомные слова
+// console.log(document.querySelector('[data-current="3"]').nextElementSibling); //* получить следующего соседа который не перенос строки
 
-// for (let node of document.body.childNodes) {
+// for (let node of document.body.childNodes) { //*вывести все кроме текстовых нод
 // 	if (node.nodeName == "#text") {
 // 		continue;
 // 	}
-// 	console.log(node);
+// 	console.log(node); 
 // }
 // ! 034 События на мобильных устройствах
-// touchstart
-// touchmove
-// touchend
-// touchenter
-// touchleave
-// touchcancel
-/* 
-window.addEventListener("DOMContentLoaded", () => {
-	const box = document.querySelector("#box");
+// touchstart //* касание по элементу
+// touchmove //* коснулся и двигается палец по ээлементу
+// touchend //* оторвался от элемента
+// touchenter //*палец зашел на пределы этого элемента
+// touchleave //*ушел за пределы элемента
+// touchcancel //* точка касания не регистрируется на элементе
 
-	box.addEventListener("touchstart", (e) => {
-		e.preventDefault();
+// window.addEventListener("DOMContentLoaded", () => {
+// 	const box = document.querySelector("#box");
 
-		console.log("start");
-	});
+// 	box.addEventListener("touchstart", (e) => {
+// 		e.preventDefault();
 
-	box.addEventListener("touchmove", (e) => {
-		e.preventDefault();
+// 		console.log("start");
+// 	});
 
-		console.log(e.targetTouches[0].pageX);
-	});
+// 	box.addEventListener("touchmove", (e) => {
+// 		e.preventDefault();
 
-	box.addEventListener("touchend", (e) => {
-		e.preventDefault();
+// 		console.log(e.targetTouches[0].pageX); //* по каким карденатам елозит 1й палец (0 значит 1й)
+// 	});
 
-		console.log("end");
-	});
-});
- */
-// touches
-// targetTouches
-// chengedTouches
+// 	box.addEventListener("touchend", (e) => {
+// 		e.preventDefault();
+
+// 		console.log("end");
+// 	});
+// });
+
+// touches //* список всех пальцев на экране
+// targetTouches //* список всех пальцев которые взаимадействуют с таргетом
+// chengedTouches //* список пальцев которые участвуют в текущем событии
 
 // ! 035 Async, defer, динамические скрипты
-/* 
+
 // В HTML: <script async src="/js/script.js"></script>
 // ? async -- загрузка паралельно со всем остальным, и выполнится как только будет готов, не ждет ДОМ, и другие скрипты
 
 // В HTML: <script defer src="/js/script.js"></script>
 // ? defer -- загрузка паралельно с ДОМ, но выполнится только после загрузки ДОМ, следующий скрипт с таким параметром, будет ждать загрузки этого скрипта прежде чем начнет сам загружаться
 
-function loadScript(src) {
-	const script = document.createElement("script");
-	script.src = src;
-	script.async = false; //по умолчанию true для динамически добавляемых на страницу скриптов
-	document.body.append(script);
-}
+// function loadScript(src) {
+// 	const script = document.createElement("script");
+// 	script.src = src;
+// 	script.async = false; //*по умолчанию true для динамически добавляемых на страницу скриптов
+// 	document.body.append(script);
+// }
 
 // loadScript(какой-то путь к скрипту)
- */
+
 
 // ! 037 ClassList и делегирование событий
-/* 
-const btns = document.querySelectorAll(".first button"),
-	btnsWrapper = document.querySelector(".wrapper .first");
 
-// console.log(btns[0].classList.length); // кол-во классов у 1й кнопки
-// console.log(btns[0].classList.item(1)); // возвращает 2й класс по счету у элемента
+// const btns = document.querySelectorAll("button"),
+// 	btnsWrapper = document.querySelector(".btn_wrapper");
 
-// console.log(btns[1].classList.add("green, sdad")); // добавить класс
-// console.log(btns[0].classList.remove("red")); // удалить класс
-// console.log(btns[2].classList.toggle("green")); // если есть удалить, если нет добавить
+// console.log(btns[0].classList.length); //* кол-во классов у 1й кнопки
+// console.log(btns[0].classList.item(1)); //* возвращает 2й класс по счету у элемента
+
+// console.log(btns[1].classList.add("green","sadasd")); //* добавить класс
+// console.log(btns[0].classList.remove("firstCls")); //* удалить класс
+// console.log(btns[0].classList.toggle("green")); //* если есть удалить, если нет добавить
 
 // btns[0].addEventListener("click", () => {
-// 	// if (!btns[1].classList.contains("red")) {
-// 	// 	btns[1].classList.add("red");
-// 	// } else {
-// 	// 	btns[1].classList.remove("red");
-// 	// }
+	// if (!btns[1].classList.contains("green")) { //* .contains - есть ли такой класс если нет добавляем, если есть убираем
+	// 	btns[1].classList.add("green");
+	// } else {
+	// 	btns[1].classList.remove("green");
+	// }
 
-// 	btns[1].classList.toggle("red");
+	// btns[1].classList.toggle("green"); //* тот же функционал через .toggle - есть ли такой класс если нет добавляем, если есть убираем
 // });
 
-btnsWrapper.addEventListener("click", (e) => {
-	// ? делегирование (передача) события клика от враппера кнопок, к самим кнопка по условию, что позволяет работать с динамически добавленным контентом
+// btnsWrapper.addEventListener('click', (e) => { //! Делегирование событий - это передача событий от родителей к потомкам по условию, что позволяет работать с динамически добавленным контентом
 
 	// console.dir(e.target);
-	// if (e.target && e.target.nodeName == "BUTTON") {
-	// 	// ? e.target --проверка существует ли (есть обьекты у которых нет таргета)
-	// 	// ? имя ноды выше в консоле дир проверили что такое свойство есть
+	// if (e.target && e.target.tagName == "BUTTON"){ //* e.target проверка для того, что не у всех элементов на странице есть событие клика и проверяем является ли клик именно по кнопке
+	// 	console.log(e.target);
+	// }
+
+	// if (e.target && e.target.nodeName == "BUTTON") { //* e.target --проверка существует ли (есть обьекты у которых нет таргета), имя ноды выше в консоле дир проверили что такое свойство есть
 	// 	e.target.classList.toggle("green");
 	// } else {
 	// 	e.target.classList.toggle("red");
 	// }
 
-	// if (e.target && e.target.classList.contains("red")) {
-	// //? e.target --проверка существует ли (есть обьекты у которых нет таргета)
-	// //? содержит ли класс ред, наш таргет
+	// if (e.target && e.target.classList.contains("red")) { //* e.target --проверка существует ли (есть обьекты у которых нет таргета), содержит ли класс ред, наш таргет
 	// 	btns[2].classList.toggle("green");
 	// }
 
-	if (e.target && e.target.matches("button.red")) {
-		//? e.target --проверка существует ли (есть обьекты у которых нет таргета)
-		//? matches ('button.red') - проверка с селекторами
-		e.target.classList.toggle("green");
-	}
-});
+	// if (e.target && e.target.matches("button.red")) { //! matches ('button.red') - проверка с селекторами
+	// 	e.target.classList.toggle("green");
+	// }
+// });
 
-const newBtn = document.createElement("button");
-//? динамически добавляем еще 1 баттон
-newBtn.classList.add("red");
-btnsWrapper.append(newBtn);
- */
+// const newBtn = document.createElement("button");//* динамически добавляем еще 1 баттон
+// newBtn.classList.add("red");
+// btnsWrapper.append(newBtn);
+
 
 // ! 038 Создаем табы в новом проекте
+//! Мой свежий вариант переключения табов
+window.addEventListener("DOMContentLoaded", () => { //! весь джава код сайта в теле этой функции
+	const tabHeader = document.querySelector(".tabheader__items"),
+				tabHeaderItem = document.querySelectorAll(".tabheader__item"),
+				tabsContent = document.querySelectorAll(".tabcontent");
 
-window.addEventListener("DOMContentLoaded", () => {
+	function hideTabContent() {
+		tabsContent.forEach((item) => {
+			item.classList.add("hide");
+			item.classList.remove("show", "fade");
+		});
+		tabHeaderItem.forEach((item) => {
+			item.classList.remove("tabheader__item_active");
+		});
+	}
+
+	function showTabContent(i = 0){ //todo если функция без параметра вызывается, то по умолчанию задаем 0
+		tabsContent[i].classList.add("show", "fade");
+		tabsContent[i].classList.remove("hide");
+		tabHeaderItem[i].classList.add("tabheader__item_active");
+	}
+
+	hideTabContent();
+	showTabContent();
+
+	tabHeader.addEventListener('click', (e) => { //todo делегирование (передача) события клика от враппера кнопок, к самим кнопка по условию, что позволяет работать с динамически добавленным контентом
+		const target = e.target;
+		if (target && target.matches("div.tabheader__item") && !target.matches("div.tabheader__item.tabheader__item_active")) { //todo matches ('button.red') - проверка с селекторами
+			hideTabContent();
+			const indexTab = Array.from(tabHeaderItem).indexOf(target); //todo из псевдомассива создать массив, и в нем проверить индекс элемента по которому клик совершон
+			showTabContent(indexTab);
+		}
+	});
+});
+
+//! Мой старый вариант переключения табов
+/*
 	const tabHeader = document.querySelector(".tabheader__items"),
 		tabHeaderItem = document.querySelectorAll(".tabheader__item"),
 		tabContent = document.querySelectorAll(".tabcontent");
@@ -1134,174 +1405,174 @@ window.addEventListener("DOMContentLoaded", () => {
 			});
 		}
 	});
-
+*/
 	// ! 041 Создаем таймер обратного отсчета на сайте
-	const oneDayMillisec = 24 * 60 * 60 * 1000,
-		plusOneDay = new Date(Date.now() + oneDayMillisec),
-		// deadline = "2022-04-18", // ? можно указать так
-		timerSelector = ".timer";
+	// const oneDayMillisec = 24 * 60 * 60 * 1000,
+	// 	plusOneDay = new Date(Date.now() + oneDayMillisec),
+	// 	// deadline = "2022-04-18", // ? можно указать так
+	// 	timerSelector = ".timer";
 
-	function getTimeRemaining(endtime) {
-		const t = Date.parse(endtime) - Date.parse(new Date()),
-			days = Math.floor(t / (1000 * 60 * 60 * 24)),
-			hours = Math.floor((t / (1000 * 60 * 60)) % 24),
-			minutes = Math.floor((t / 1000 / 60) % 60),
-			seconds = Math.floor((t / 1000) % 60);
+	// function getTimeRemaining(endtime) {
+	// 	const t = Date.parse(endtime) - Date.parse(new Date()),
+	// 		days = Math.floor(t / (1000 * 60 * 60 * 24)),
+	// 		hours = Math.floor((t / (1000 * 60 * 60)) % 24),
+	// 		minutes = Math.floor((t / 1000 / 60) % 60),
+	// 		seconds = Math.floor((t / 1000) % 60);
 
-		return {
-			total: t,
-			days: days,
-			hours: hours,
-			minutes: minutes,
-			seconds: seconds,
-		};
-	}
+	// 	return {
+	// 		total: t,
+	// 		days: days,
+	// 		hours: hours,
+	// 		minutes: minutes,
+	// 		seconds: seconds,
+	// 	};
+	// }
 
-	function getZero(numb) {
-		if (numb >= 0 && numb < 10) {
-			// ? если число меньше 10 добавляем перед числом ноль
-			return `0${numb}`;
-		} else {
-			return numb;
-		}
-	}
+	// function getZero(numb) {
+	// 	if (numb >= 0 && numb < 10) {
+	// 		// ? если число меньше 10 добавляем перед числом ноль
+	// 		return `0${numb}`;
+	// 	} else {
+	// 		return numb;
+	// 	}
+	// }
 
-	function setClock(selector, endtime) {
-		const timer = document.querySelector(selector),
-			days = timer.querySelector("#days"),
-			hours = timer.querySelector("#hours"),
-			minutes = timer.querySelector("#minutes"),
-			seconds = timer.querySelector("#seconds"),
-			timeInterval = setInterval(updateClock, 1000);
+	// function setClock(selector, endtime) {
+	// 	const timer = document.querySelector(selector),
+	// 		days = timer.querySelector("#days"),
+	// 		hours = timer.querySelector("#hours"),
+	// 		minutes = timer.querySelector("#minutes"),
+	// 		seconds = timer.querySelector("#seconds"),
+	// 		timeInterval = setInterval(updateClock, 1000);
 
-		updateClock();
+	// 	updateClock();
 
-		function updateClock() {
-			const t = getTimeRemaining(endtime);
+	// 	function updateClock() {
+	// 		const t = getTimeRemaining(endtime);
 
-			days.textContent = getZero(t.days);
-			hours.textContent = getZero(t.hours);
-			minutes.textContent = getZero(t.minutes);
-			seconds.textContent = getZero(t.seconds);
+	// 		days.textContent = getZero(t.days);
+	// 		hours.textContent = getZero(t.hours);
+	// 		minutes.textContent = getZero(t.minutes);
+	// 		seconds.textContent = getZero(t.seconds);
 
-			if (t.total <= 0) {
-				clearInterval(timeInterval);
-			}
-		}
-	}
+	// 		if (t.total <= 0) {
+	// 			clearInterval(timeInterval);
+	// 		}
+	// 	}
+	// }
 
-	setClock(timerSelector, plusOneDay);
+	// setClock(timerSelector, plusOneDay);
 
 	// !043 Создаем модальное окно
-	const modalWind = document.querySelector(".modal"),
-		modalBtn = document.querySelectorAll("button[data-modal]"),
-		modalCloseBtn = document.querySelector("[data-close]");
+	// const modalWind = document.querySelector(".modal"),
+	// 	modalBtn = document.querySelectorAll("button[data-modal]"),
+	// 	modalCloseBtn = document.querySelector("[data-close]");
 
-	function showModal(modal = modalWind) {
-		modal.classList.add("show", "fade");
-		modal.classList.remove("hide");
-		document.body.style.overflow = "hidden";
-		clearInterval(intervalModal);
-	}
+	// function showModal(modal = modalWind) {
+	// 	modal.classList.add("show", "fade");
+	// 	modal.classList.remove("hide");
+	// 	document.body.style.overflow = "hidden";
+	// 	clearInterval(intervalModal);
+	// }
 
-	function hideModal(modal = modalWind) {
-		modal.classList.add("hide");
-		modal.classList.remove("show", "fade");
-		document.body.style.overflow = "";
-	}
+	// function hideModal(modal = modalWind) {
+	// 	modal.classList.add("hide");
+	// 	modal.classList.remove("show", "fade");
+	// 	document.body.style.overflow = "";
+	// }
 
-	modalBtn.forEach((btn) => {
-		btn.addEventListener("click", () => {
-			showModal();
-		});
-	});
+	// modalBtn.forEach((btn) => {
+	// 	btn.addEventListener("click", () => {
+	// 		showModal();
+	// 	});
+	// });
 
-	modalCloseBtn.addEventListener("click", () => {
-		hideModal();
-	});
+	// modalCloseBtn.addEventListener("click", () => {
+	// 	hideModal();
+	// });
 
-	modalWind.addEventListener("click", (e) => {
-		if (e.target === modalWind) {
-			hideModal();
-		}
-	});
-	document.addEventListener("keydown", (e) => {
-		if (e.code === "Escape" && modalWind.matches(".show")) {
-			hideModal();
-		}
-	});
+	// modalWind.addEventListener("click", (e) => {
+	// 	if (e.target === modalWind) {
+	// 		hideModal();
+	// 	}
+	// });
+	// document.addEventListener("keydown", (e) => {
+	// 	if (e.code === "Escape" && modalWind.matches(".show")) {
+	// 		hideModal();
+	// 	}
+	// });
 
 	// ! 044 Модификации модального окна
-	const intervalModal = setTimeout(showModal, 5000); //! ОТРУБИЛ, ЧТОБЫ НЕ ЗАЕБЫВАЛО
+	// const intervalModal = setTimeout(showModal, 5000); //! ОТРУБИЛ, ЧТОБЫ НЕ ЗАЕБЫВАЛО
 
-	function showModalByScroll() {
-		if (
-			window.pageYOffset + document.documentElement.clientHeight >=
-			document.documentElement.scrollHeight
-		) {
-			// ? невидимая область документа + видимая область = высота всего документа
-			showModal();
-			window.removeEventListener("scroll", showModalByScroll);
-		}
-	}
-	window.addEventListener("scroll", showModalByScroll);
+	// function showModalByScroll() {
+	// 	if (
+	// 		window.pageYOffset + document.documentElement.clientHeight >=
+	// 		document.documentElement.scrollHeight
+	// 	) {
+	// 		// ? невидимая область документа + видимая область = высота всего документа
+	// 		showModal();
+	// 		window.removeEventListener("scroll", showModalByScroll);
+	// 	}
+	// }
+	// window.addEventListener("scroll", showModalByScroll);
 
 	//! 048 Используем классы в реальной работе
-	class CardMenu {
-		constructor(
-			imgUrl,
-			imgAlt,
-			subtitle,
-			descr,
-			price,
-			parentSelector,
-			...clases
-		) {
-			//? ...clases - рест оператор, может быть любое колличество классов
-			this.src = imgUrl;
-			this.alt = imgAlt;
-			this.title = subtitle;
-			this.descr = descr;
-			this.price = price;
-			this.clases = clases;
-			this.parent = document.querySelector(parentSelector);
-			this.transfer = 27; //курс валют доллара к грн
-			this.changeToUAH();
-		}
+	// class CardMenu {
+	// 	constructor(
+	// 		imgUrl,
+	// 		imgAlt,
+	// 		subtitle,
+	// 		descr,
+	// 		price,
+	// 		parentSelector,
+	// 		...clases
+	// 	) {
+	// 		//? ...clases - рест оператор, может быть любое колличество классов
+	// 		this.src = imgUrl;
+	// 		this.alt = imgAlt;
+	// 		this.title = subtitle;
+	// 		this.descr = descr;
+	// 		this.price = price;
+	// 		this.clases = clases;
+	// 		this.parent = document.querySelector(parentSelector);
+	// 		this.transfer = 27; //курс валют доллара к грн
+	// 		this.changeToUAH();
+	// 	}
 
-		changeToUAH() {
-			this.price *= this.transfer;
-		}
-		render() {
-			const itemMenuDiv = document.createElement("div");
+	// 	changeToUAH() {
+	// 		this.price *= this.transfer;
+	// 	}
+	// 	render() {
+	// 		const itemMenuDiv = document.createElement("div");
 
-			this.clases.forEach((className) =>
-				itemMenuDiv.classList.add(className)
-			); //? поскольку классы у рест оператора записываются в массив, нам нужно перебрать все в массиве методом форич
+	// 		this.clases.forEach((className) =>
+	// 			itemMenuDiv.classList.add(className)
+	// 		); //? поскольку классы у рест оператора записываются в массив, нам нужно перебрать все в массиве методом форич
 
-			if (this.clases.length === 0 || !this.clases.includes("menu__item")) {
-				// ? Если в массиве нет никакого класса, мы добавляем класс menu__item, который должен быть по умолчанию или (||) если в классах нет класса menu__item мы также его добавляем
-				this.itemMenuDiv = "menu__item";
-				itemMenuDiv.classList.add(this.itemMenuDiv);
-			}
+	// 		if (this.clases.length === 0 || !this.clases.includes("menu__item")) {
+	// 			// ? Если в массиве нет никакого класса, мы добавляем класс menu__item, который должен быть по умолчанию или (||) если в классах нет класса menu__item мы также его добавляем
+	// 			this.itemMenuDiv = "menu__item";
+	// 			itemMenuDiv.classList.add(this.itemMenuDiv);
+	// 		}
 
-			itemMenuDiv.innerHTML = `
-				<img src=${this.src} alt=${this.alt} />
-				<h3 class="menu__item-subtitle">${this.title}</h3>
-				<div class="menu__item-descr">
-				${this.descr}
-				</div>
-				<div class="menu__item-divider"></div>
-				<div class="menu__item-price">
-					<div class="menu__item-cost">Цена:</div>
-					<div class="menu__item-total">
-						<span>${this.price}</span> грн/день
-					</div>
-				</div>
-			`;
-			this.parent.append(itemMenuDiv);
-		}
-	}
+	// 		itemMenuDiv.innerHTML = `
+	// 			<img src=${this.src} alt=${this.alt} />
+	// 			<h3 class="menu__item-subtitle">${this.title}</h3>
+	// 			<div class="menu__item-descr">
+	// 			${this.descr}
+	// 			</div>
+	// 			<div class="menu__item-divider"></div>
+	// 			<div class="menu__item-price">
+	// 				<div class="menu__item-cost">Цена:</div>
+	// 				<div class="menu__item-total">
+	// 					<span>${this.price}</span> грн/день
+	// 				</div>
+	// 			</div>
+	// 		`;
+	// 		this.parent.append(itemMenuDiv);
+	// 	}
+	// }
 
 	// const elem1 = new CardMenu(
 	// 	//? запись с ссылкой на объект для дальнейшего использования
@@ -1314,39 +1585,39 @@ window.addEventListener("DOMContentLoaded", () => {
 	// );
 	// elem1.render();
 
-	new CardMenu(
-		//? запись без ссылки с примененным сразу методом рендер
-		"img/tabs/vegy.jpg",
-		"vegy",
-		'Меню "Фитнес"',
-		'Меню "Фитнес" - это новый подход к приготовлению блюд: больше свежих овощей и фруктов. Продукт активных и здоровых людей. Это абсолютно новый продукт с оптимальной ценой и высоким качеством!',
-		9,
-		".menu__field .container",
-		"asdasd"
-	).render();
+// 	new CardMenu(
+// 		//? запись без ссылки с примененным сразу методом рендер
+// 		"img/tabs/vegy.jpg",
+// 		"vegy",
+// 		'Меню "Фитнес"',
+// 		'Меню "Фитнес" - это новый подход к приготовлению блюд: больше свежих овощей и фруктов. Продукт активных и здоровых людей. Это абсолютно новый продукт с оптимальной ценой и высоким качеством!',
+// 		9,
+// 		".menu__field .container",
+// 		"asdasd"
+// 	).render();
 
-	new CardMenu(
-		//? запись без ссылки с примененным сразу методом рендер
-		"img/tabs/elite.jpg",
-		"elite",
-		"Меню “Премиум”",
-		"В меню “Премиум” мы используем не только красивый дизайн упаковки, но и качественное исполнение блюд. Красная рыба, морепродукты, фрукты - ресторанное меню без похода в ресторан!",
-		14,
-		".menu__field .container",
-		"menu__item"
-	).render();
+// 	new CardMenu(
+// 		//? запись без ссылки с примененным сразу методом рендер
+// 		"img/tabs/elite.jpg",
+// 		"elite",
+// 		"Меню “Премиум”",
+// 		"В меню “Премиум” мы используем не только красивый дизайн упаковки, но и качественное исполнение блюд. Красная рыба, морепродукты, фрукты - ресторанное меню без похода в ресторан!",
+// 		14,
+// 		".menu__field .container",
+// 		"menu__item"
+// 	).render();
 
-	new CardMenu(
-		//? запись без ссылки с примененным сразу методом рендер
-		"img/tabs/post.jpg",
-		"post",
-		'Меню "Постное"',
-		"Меню “Постное” - это тщательный подбор ингредиентов: полное отсутствие продуктов животного происхождения, молоко из миндаля, овса, кокоса или гречки, правильное количество белков за счет тофу и импортных вегетарианских стейков.",
-		21,
-		".menu__field .container",
-		"menu__item"
-	).render();
-});
+// 	new CardMenu(
+// 		//? запись без ссылки с примененным сразу методом рендер
+// 		"img/tabs/post.jpg",
+// 		"post",
+// 		'Меню "Постное"',
+// 		"Меню “Постное” - это тщательный подбор ингредиентов: полное отсутствие продуктов животного происхождения, молоко из миндаля, овса, кокоса или гречки, правильное количество белков за счет тофу и импортных вегетарианских стейков.",
+// 		21,
+// 		".menu__field .container",
+// 		"menu__item"
+// 	).render();
+// });
 
 // ! 039 Скрипты и время их выполнения. setTimeout и setInterval
 /* 
@@ -1652,18 +1923,18 @@ document.querySelector(".order__form .btn").addEventListener("click", (e) => {
 // console.log(JSON.parse(str)); // ? перевод данных типа из сервера в объект для работы с ними
 
 // ! Глубокая копия объекта !!
-const mainObj = {
-	name: "Eugene",
-	tel: "+72312434113",
-	skills: {
-		lang: "UA",
-		dick: "small",
-	},
-};
-const str = JSON.stringify(mainObj); // ? перевод данных из объекта в строку JSON
-// console.log(str);
-const newObj = JSON.parse(str); // ? перевод данных типа из сервера в объект для работы с ними
-//console.log(newObj);
-newObj.skills.dick = "big";
-console.log(mainObj);
-console.log(newObj);
+// const mainObj = {
+// 	name: "Eugene",
+// 	tel: "+72312434113",
+// 	skills: {
+// 		lang: "UA",
+// 		dick: "small",
+// 	},
+// };
+// const str = JSON.stringify(mainObj); // ? перевод данных из объекта в строку JSON
+// // console.log(str);
+// const newObj = JSON.parse(str); // ? перевод данных типа из сервера в объект для работы с ними
+// //console.log(newObj);
+// newObj.skills.dick = "big";
+// console.log(mainObj);
+// console.log(newObj);
