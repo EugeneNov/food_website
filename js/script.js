@@ -1331,6 +1331,116 @@ console.log(!!null);
 // newBtn.classList.add("red");
 // btnsWrapper.append(newBtn);
 
+// ! 039 Скрипты и время их выполнения. setTimeout и setInterval
+
+// const timerId = setTimeout((text) => {
+// 	console.log(text);
+// }, 2000, "Прошло 2 секунды");//* передать в фукцию значения можно после указания таймера
+
+// const btnN = document.querySelector(".btnN");
+// let timerId,
+// 		i =0;
+// btnN.addEventListener('click', () => {
+// 	// const timerId = setTimeout(logger, 2000);//* передача готовой функции
+// 	timerId = setInterval(logger, 500);//! Сет интервал не учитывает сколько будет выполняться функция внутри него, а просто вызывает ее через указанной время, даже если она еще не отработала
+// 	clearInterval(recurseTimeout);
+// });
+
+// function logger () {
+// 	if (i == 3){
+// 		clearInterval(timerId); //* Убрать выполнение вункции по таймеру
+// 	}
+// 	console.log("Some text");
+// 	i++;
+// }
+
+// let recurseTimeout = setTimeout(function log(){ //! сет интервал через рекурсивный вызов сет таймаут
+// 	console.log("hi");
+// 	recurseTimeout = setTimeout(log, 500);
+// }, 500);
+
+
+// const btnN = document.querySelector(".btnN"); //! Моя анимация через сет интервал
+// btnN.addEventListener('click', myAnim);
+// function myAnim(speedInMs = 10) {
+// 	const box = document.querySelector(".boxX");
+// 	let posTop = 0,
+// 			posLeft = 0;
+
+// 	const intervalAnim = setInterval(() => {
+// 			box.style.top = `${posTop += 1}px`;
+// 			box.style.left = `${posLeft += 1}px`;
+// 			if(posTop >= 300){
+// 				clearInterval(intervalAnim);
+// 			}
+// 		}, speedInMs);
+// }
+
+
+// const btnN = document.querySelector(".btnN"); //! Как надо
+// btnN.addEventListener('click', myAnim);
+
+// function myAnim () {
+// 	const elem = document.querySelector('.boxX');
+// 	let pos =0;
+
+// 	const id = setInterval(frame, 10);
+// 	function frame() {
+// 		if(pos == 300){
+// 			clearInterval(id);
+// 		} else {
+// 			pos++;
+// 			elem.style.top = pos + "px";
+// 			elem.style.left = pos + "px";
+// 		}
+// 	}
+// }
+
+//! 040 Работа с датами
+
+// const now = new Date("2023-08-09"); //* передаем дату в виде строки
+// const now = new Date(2023, 8, 9, 20); //* передаем дату в прямых аргументов (месяца считаются с 0, 17 часов потому, чо часовой пояс +3)
+// const now = new Date(0); //* передаем в миллисикундах и хранится в JS в миллисекундах (отчет от 1 января 1970 года)
+// const now = new Date(); //* дата сейчас
+
+// console.log(now.setHours(18, 40)); //*установить часы (следующий аргумент идет минуты, следующий секунды и т.д.) (если установить число большее чем число часов в сутках, то будет пересчет асов и добавление лишних в дни)
+// console.log(now); 
+
+
+
+// console.log(now.getFullYear()); //*получение года
+// console.log(now.getMonth()); //*получение месяца
+// console.log(now.getDate()); //*получение дня
+
+// console.log(now.getHours()); //*получение часов
+// console.log(now.getUTCHours()); //*получение часов по гринвичу
+
+// console.log(now.getMinutes()); //*получение минут
+// console.log(now.getSeconds()); //*получение секунд
+// console.log(now.getMilliseconds()); //*получение милисекунд
+// console.log(now.getDay()); //*Вернуть день недели от 0 (воскресенье) до 6 (суббота)
+
+// console.log(now.getTimezoneOffset()); //*получение разницы в минутах между моим часовым поясом и гринвичем]
+// console.log(now.getTime()); //*число в миллисекундах которое прошло с 1970 года
+
+
+// let start = Date.now(); //! для измерения временного промежутка Date.now() - возвращает текущую метку времени в милисекундах
+// console.log(start);
+// for (let i = 1; i < 100000; i++){
+// 	let some = i ** 3;
+// }
+// let end = Date.now(); 
+// console.log(end);
+// console.log(`Цикл отработал за ${end - start} миллисекунд`)
+
+// function getWeekDay(date) { //* функция получает дату и выводит в консоль какой день недели был
+// 	let days = ['ВС', 'ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ'];
+
+// 	return days[date.getDay()];
+// }
+
+// let date = new Date(2014, 0, 3); // 3 января 2014 года
+// console.log( getWeekDay(date) ); // ПТ
 
 // ! 038 Создаем табы в новом проекте
 //! Мой свежий вариант переключения табов
@@ -1407,61 +1517,61 @@ window.addEventListener("DOMContentLoaded", () => { //! весь джава ко
 	});
 */
 	// ! 041 Создаем таймер обратного отсчета на сайте
-	// const oneDayMillisec = 24 * 60 * 60 * 1000,
-	// 	plusOneDay = new Date(Date.now() + oneDayMillisec),
-	// 	// deadline = "2022-04-18", // ? можно указать так
-	// 	timerSelector = ".timer";
 
-	// function getTimeRemaining(endtime) {
-	// 	const t = Date.parse(endtime) - Date.parse(new Date()),
-	// 		days = Math.floor(t / (1000 * 60 * 60 * 24)),
-	// 		hours = Math.floor((t / (1000 * 60 * 60)) % 24),
-	// 		minutes = Math.floor((t / 1000 / 60) % 60),
-	// 		seconds = Math.floor((t / 1000) % 60);
+	const oneDayMillisec = 24 * 60 * 60 * 1000,
+				plusOneDay = new Date(Date.now() + oneDayMillisec),
+				timerSelector = ".timer",
+				deadline = "2023-08-10"; //* можно указать так
 
-	// 	return {
-	// 		total: t,
-	// 		days: days,
-	// 		hours: hours,
-	// 		minutes: minutes,
-	// 		seconds: seconds,
-	// 	};
-	// }
+	setClock(timerSelector, plusOneDay); //* запуск функции таймера который в коде ниже
+	
+	function getTimeRemaining(endtime) { //*сколько времени еще до дэдлайна
+		const difInMs = Date.parse(endtime) - Date.now(),
+					days = Math.floor(difInMs / (1000 * 60 * 60 * 24)), //* 1000 ms * 60 (кол-во миллисек в 1 минуте) * 60 (в 1 часе) * 24 часа (в сутках)
+					hours = Math.floor((difInMs / (1000 * 60 * 60)) % 24),
+					minutes = Math.floor((difInMs / 1000 / 60) % 60),
+					seconds = Math.floor((difInMs / 1000) % 60);
 
-	// function getZero(numb) {
-	// 	if (numb >= 0 && numb < 10) {
-	// 		// ? если число меньше 10 добавляем перед числом ноль
-	// 		return `0${numb}`;
-	// 	} else {
-	// 		return numb;
-	// 	}
-	// }
+		return { //* возвращаем все значения в виде объекта
+			total: difInMs,
+			days: days,
+			hours: hours,
+			minutes: minutes,
+			seconds: seconds,
+		};
+	}
 
-	// function setClock(selector, endtime) {
-	// 	const timer = document.querySelector(selector),
-	// 		days = timer.querySelector("#days"),
-	// 		hours = timer.querySelector("#hours"),
-	// 		minutes = timer.querySelector("#minutes"),
-	// 		seconds = timer.querySelector("#seconds"),
-	// 		timeInterval = setInterval(updateClock, 1000);
+	function getZero(num){ //* если число в таймере меньше 10 добавляем перед ним 0, если больше просто отображаем
+		if(num >= 0 && num < 10){
+			return `0${num}`;
+		} else {
+			return num;
+		}
+	}
 
-	// 	updateClock();
+	function setClock (selector, endtime){ //*выведение данных на странице
+		const timer = document.querySelector(selector),
+					days = timer.querySelector('#days'),
+					hours = timer.querySelector('#hours'),
+					minutes = timer.querySelector('#minutes'),
+					seconds = timer.querySelector('#seconds'),
+					timeInterval = setInterval(updateClock, 1000); //*вызываем каждую секунду обновление таймера
 
-	// 	function updateClock() {
-	// 		const t = getTimeRemaining(endtime);
+		updateClock (); //! для того чтобы таймер стартовал сразу при загрузке страницы а не через 1 секунду
 
-	// 		days.textContent = getZero(t.days);
-	// 		hours.textContent = getZero(t.hours);
-	// 		minutes.textContent = getZero(t.minutes);
-	// 		seconds.textContent = getZero(t.seconds);
+		function updateClock () { 
+			const t = getTimeRemaining(endtime); //* переменной t присваиваем значение объекта который был сформирован в результате работы функции getTimeRemaining()
 
-	// 		if (t.total <= 0) {
-	// 			clearInterval(timeInterval);
-	// 		}
-	// 	}
-	// }
+			days.textContent = getZero(t.days);
+			hours.textContent = getZero(t.hours);
+			minutes.textContent = getZero(t.minutes);
+			seconds.textContent = getZero(t.seconds);
 
-	// setClock(timerSelector, plusOneDay);
+			if (t.total <= 0){ //*если значение меньше либо равно нулю, убираем интевал вызова апдейта таймера
+				clearInterval(timeInterval);
+			}
+		}
+	}
 
 	// !043 Создаем модальное окно
 	// const modalWind = document.querySelector(".modal"),
