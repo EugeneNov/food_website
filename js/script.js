@@ -1574,6 +1574,41 @@ window.addEventListener("DOMContentLoaded", () => { //! весь джава ко
 	}
 
 	// !043 Создаем модальное окно
+	const modalBtn = document.querySelectorAll('[data-modal]'),
+				modalClose = document.querySelector('[data-close]'),
+				modalWind = document.querySelector('.modal');
+
+	function showModal() {
+		modalWind.classList.add("show");
+		modalWind.classList.remove("hide");
+		document.body.style.overflow = 'hidden';
+		// clearInterval(modalTimer);
+		// window.removeEventListener('scroll', showModalByScroll);
+	}
+	function closeModal() {
+		modalWind.classList.remove("show");
+		modalWind.classList.add("hide");
+		document.body.style.overflow = ''; //* браузер назначит значение по дэфолту visible
+	}
+
+	modalBtn.forEach((btn) =>{
+		btn.addEventListener('click', showModal);
+	});
+	
+	modalClose.addEventListener('click', closeModal);
+
+	modalWind.addEventListener('click', (e) => {
+		if(e.target == modalWind){
+			closeModal();
+		}
+	});
+	document.addEventListener('keydown', (e) => {
+		if(e.code === 'Escape' && modalWind.matches(".show")){
+			closeModal();
+		}
+	});
+
+	//! Старый код
 	// const modalWind = document.querySelector(".modal"),
 	// 	modalBtn = document.querySelectorAll("button[data-modal]"),
 	// 	modalCloseBtn = document.querySelector("[data-close]");
@@ -1613,6 +1648,21 @@ window.addEventListener("DOMContentLoaded", () => { //! весь джава ко
 	// });
 
 	// ! 044 Модификации модального окна
+
+	// const modalTimer = setTimeout(showModal, 2000);
+
+	function showModalByScroll() {
+		// console.log(window.pageYOffset + document.documentElement.clientHeight);//* сколько проскролено выше + сколько видит клиент
+		// console.log(document.documentElement.scrollHeight); //* общая высота всего контента со скролом
+		if(window.pageYOffset + document.documentElement.clientHeight >= document.documentElement.scrollHeight){
+			showModal();
+			window.removeEventListener('scroll', showModalByScroll);
+		}
+	}
+
+	window.addEventListener('scroll', showModalByScroll);
+
+	//! Старый код
 	// const intervalModal = setTimeout(showModal, 5000); //! ОТРУБИЛ, ЧТОБЫ НЕ ЗАЕБЫВАЛО
 
 	// function showModalByScroll() {
