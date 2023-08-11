@@ -1442,6 +1442,228 @@ console.log(!!null);
 // let date = new Date(2014, 0, 3); // 3 января 2014 года
 // console.log( getWeekDay(date) ); // ПТ
 
+//! 042 Параметры документа, окна и работа с ними
+
+// const box = document.querySelector('.lesdoc');
+
+// const width = box.clientWidth; //* реальная видимая пользователю высота и ширина окна
+// const height = box.clientHeight;
+
+// const width = box.offsetWidth; //* фактически как установлена в цss
+// const height = box.offsetHeight;
+
+// const width = box.scrollWidth; //* полные размеры со скроллом
+// const height = box.scrollHeight;
+
+// console.log(width, height);
+
+// box.addEventListener('click', (e) => {
+// 	// e.target.style.height = `${box.scrollHeight}px`; //* делаем высоту блока равной высоте вместе с прокруткой всего контента
+// 	console.log(box.scrollTop); //* при клике в блоке в консоле будет видно сколько пролистано контента в пикселях 
+// 	console.log(document.documentElement.scrollTop = 0);
+// 	// window.scrollBy(0, 100); //*проскролить на 100 пикселей от верха
+// 	window.scrollTo(0, 1000); //*проскролить на 200 пикселей от текущего положения
+// });
+
+// console.log(box.getBoundingClientRect()); //* можем получить свойства тол леф и т.д. только они считаются все от левой стороны и верха
+// console.log(box.getBoundingClientRect().top); //* получаем только свойство топ
+
+// const styleBox = window.getComputedStyle(box); //* получение скомпелированных всех стилей которые применены к объекту
+// console.log(styleBox.display); //* получаем значение свойства дисплей объекта
+
+// console.log(document.documentElement.scrollTop); //* сколько проскролено
+
+//! 045 Функции-конструкторы
+//! Нужны для создания новых однотипных объектов (пользователи сайта, товары в магазинах, ролики на ютубе, везде где есть шаблонизация)
+//! функции-конструкторы, это то, что находится под копотом, в работе используются для этого классы
+
+// function useR(name, age) { //* создание прототипа объекта
+// 	this.name = name; //* свойство
+// 	this.age = age;
+// 	this.human = true;
+// 	this.hello = function(){ //* метод
+// 		console.log(`Hello ${this.name}`);
+// 	};
+// }
+// useR.prototype.exit = function() { //* добавление нового метода отдельно, если нет доступа к основной функции
+// 	console.log(`Пользователь ${this.name} вышел`);
+// }
+// //! Тоже самое написанное в виде класса:
+// class useR {
+// 	constructor(name, age) {
+// 		this.name = name; //* свойство
+// 		this.age = age;
+// 		this.human = true;
+// 	}
+// 	hello() {
+// 		console.log(`Hello ${this.name}`);
+// 	}
+// 	exit() {
+// 		console.log(`Пользователь ${this.name} вышел`);
+// 	}
+// }
+
+// //! создание новых копий объекта
+// const ivan = new useR('Ivan', 44);
+// const eugene = new useR('Eugene', 35);
+
+// //! использование
+// console.log(ivan);
+// console.log(eugene.hello());
+// eugene.exit();
+
+//! 046 Контекст вызова. This
+//! Функция может вызываться 4 методами и во всех контекст вызова разный
+// function showThis(a, b) { //todo 1 вариант (Обычная функция) this - window, но если стоит строгий режим "use strict" контекст вызова this = undefined 
+// 	console.log(this);
+// 	function sum() {
+// 		console.log(this);
+		// return this.a + this.b; //* контекст вызова undefined - не будет работать
+// 		return a + b; //* пох на контекст вызова берет данные с родительской функции
+
+// 	}
+
+// 	console.log(sum());
+// }
+// showThis(4,4);
+
+
+
+// const obj = {//todo 2 вариант (Объект) если мы используем метод внутри объекта то его контекст вызова будет этот самый объект
+// 	a: 20,
+// 	b: 15,
+// 	sum: function() { //* выдает объект весь
+// 		console.log(this);
+// 	},
+// 	bz: function() {//* undefined 
+// 		function bz2 () { //* undefined - здесь был утрачен контекст вызова
+// 			console.log(this);
+// 		}
+// 		bz2();
+// 	}
+// };
+// obj.sum(); //* равно {a: 20, b: 15, sum: ƒ}
+// obj.bz(); //* undefined - поскольку это обычный вызов функции который никак не относится к методу объекта
+
+
+
+// function useR(name, age) { //todo 3 вариант (Функция конструктор) this в конструкотора и классах - это новый экземпляр объекта
+// 	this.name = name; //* свойство
+// 	this.age = age;
+// 	this.human = true;
+// 	this.hello = function(){ //* метод
+// 		console.log(`Hello ${this.name}`);
+// 	};
+// }
+// useR.prototype.exit = function() { //* добавление нового метода отдельно, если нет доступа к основной функции
+// 	console.log(`Пользователь ${this.name} вышел`);
+// }
+// const ivan = new useR('Ivan', 44); //todo КОНТЕКСТ ВЫЗОВА ivan
+
+
+
+// function sayName(surname) {//todo 4 вариант (Ручное присвоение контекста) 2 метода которые используют существующую функцию (.call(), .apply()) и 1 метод который создает новую .bind()
+// 	console.log(this);
+// 	console.log(this.name + surname);
+// }
+
+// const user = {
+// 	name: 'John'
+// };
+
+// sayName.call(user, 'Piper'); //todo для функции sayName назначаем контекст вызова объект user, доп аргументы функция принимает через запятую в виде строк
+// sayName.apply(user, ['Biber']);//todo для функции sayName назначаем контекст вызова объект user, доп аргументы функция принимает через запятую в виде массива
+
+
+
+// function count(num) {
+// 	return this*num;
+// }
+
+// const double = count.bind(2); //todo создает новую функцию double в которой (2) передается вместо this
+// console.log(double(4));
+
+
+// const obj = {
+// 	a: 20,
+// 	b: 15,
+// 	sum: function() { //todo выдает объект весь
+// 		console.log(this);
+// 	},
+// 	bz: function() {//todo контекст вызова объект obj
+// 		const bz2 = () => { //! контекст вызова берет у родителя поскольку своего контекста вызова не имеет
+// 			console.log(this);
+// 		}
+
+// 		bz2();
+// 	}
+// };
+// obj.bz(); //* {a: 20, b: 15, sum: ƒ, bz: ƒ}
+
+
+// const double = (a) => {//* если действие стрелочной функции помещается в 1 строку и она имеет 1 аргумент ее можно переписать короче
+// 	return a * 2;
+// }
+// const double = a => a * 2; //* сокращенное написание той же функции (скобки убрали, return подставляется автоматически)
+
+// const btn1 = document.querySelector('.btn1');
+
+// btn1.addEventListener('click', function() {//todo если колбек функция обработчика введена в классическом режиме через function() ее контекстом вызова будет сам объект на котором произошло событие (this = event.target)
+// 	console.log(this);
+// });
+
+// btn1.addEventListener('click', () => {//todo если колбек функция обработчика введена в виде стрелочной функции () => {} ее контекст будет утерян, поскольку сама стрелочная функция не имеет своего контекста вызова и берет его у родителя, тут родитель window 
+// 	console.log(this); //* Window {window: Window, self: Window, document: document, name: '', location: Location, …}
+// });
+
+
+
+//! 047 Классы (ES6)
+//! Классы - это красивая обертка функций-конструкторов, или говоря другими словами синтаксический сахар
+
+// class Rectangle { //* название нужно делать с большой буквы
+// 	constructor(height, width) { //* аргументы которые приходят извне при создании экземпляра класса
+// 		this.height = height; //* свойство
+// 		this.width = width; //* свойство
+
+// 	}
+
+// 	calcArea() { //*создаем метод
+// 		return this.height * this.width;
+// 	}
+// }
+
+// const sq = new Rectangle(10, 10);
+// const long = new Rectangle(20, 100);
+
+// console.log(sq.calcArea());
+// console.log(long.calcArea());
+
+
+// class ColoredRectangleWithText extends Rectangle { //* создаем новый класс который наследует все методы и свойства у Rectangle
+// 	constructor(height, width, text, bgColor){
+// 		super(height, width); //! ДОЛЖНА БЫТЬ всегда на 1м месте в конструкторе подтягивает от родителя строки присвоения свойств this.height = height; и this.width = width; ||| (в скобках указываем те свойства что нам нужны, если скобки пустые копирует все свойства)
+// 		this.text = text;
+// 		this.bgColor = bgColor;
+// 	}
+
+// 	//* метод calcArea() также подтягивается от родителя
+// 	showMyProps(){ //*создаем новый метод
+// 		console.log(`Высота: ${this.height}, Ширина: ${this.width}, Текст: ${this.text}, Цвет: ${this.bgColor}`);
+// 	}
+// }
+
+// const colorfullR = new ColoredRectangleWithText(30, 5, 'akdls', '#fff');
+// colorfullR.showMyProps();
+// console.log(colorfullR.calcArea());
+
+
+//todo Принципы ООП
+//todo 1. Абстракция - отделение концепции от ее экземпляра
+//todo 2. Наследование - способность объекта или класса базироваться на другом объекте или классе
+
+
+
 // ! 038 Создаем табы в новом проекте
 //! Мой свежий вариант переключения табов
 window.addEventListener("DOMContentLoaded", () => { //! весь джава код сайта в теле этой функции
@@ -1608,6 +1830,8 @@ window.addEventListener("DOMContentLoaded", () => { //! весь джава ко
 		}
 	});
 
+
+
 	//! Старый код
 	// const modalWind = document.querySelector(".modal"),
 	// 	modalBtn = document.querySelectorAll("button[data-modal]"),
@@ -1678,6 +1902,90 @@ window.addEventListener("DOMContentLoaded", () => { //! весь джава ко
 	// window.addEventListener("scroll", showModalByScroll);
 
 	//! 048 Используем классы в реальной работе
+
+	class ConstructMenuItem { //todo  название нужно делать с большой буквы
+		constructor(parentSelector, imgSrc, imgAlt, itemSubtitle, itemDiscr, itemPrice, ...menuItemClases) { //todo  аргументы которые приходят извне при создании экземпляра класса (...menuItemClases - сколько угодно классов которые будут добавляться к блоку menuItem)
+			this.parentSelector = document.querySelector(parentSelector);
+			this.imgSrc = imgSrc;
+			this.imgAlt = imgAlt;
+			this.itemSubtitle = itemSubtitle;
+			this.itemDiscr = itemDiscr;
+			this.itemPrice = itemPrice;
+			this.transfer = 37;
+			this.menuItemClases = menuItemClases;
+			// this.changeToUAH(); //todo  вызываем непосредственно чтобы данные сразу обработались и перевелись как надо
+		}
+
+		changeToUAH() {
+			this.itemPrice = this.itemPrice * this.transfer;
+		}
+
+		render() {
+			const menuItem = document.createElement('div');
+
+			if(this.menuItemClases.length === 0){ //todo если от рест оператора ...menuItemClases передается пустой массив, тоесть ни 1 класс не введен, чтобы не ломалась верстка задаем по умолчанию класс menu__item
+				this.menuItemClases = 'menu__item';
+				menuItem.classList.add(this.menuItemClases);
+			}else {//todo если классы передаются добавляем их в элемент
+				this.menuItemClases.forEach(className => menuItem.classList.add(className));
+				if (!menuItem.classList.contains('menu__item')){ //todo если нет класса добавляем (чтобы не ломалась верстка)
+					menuItem.classList.add('menu__item');
+				}
+			}
+
+			menuItem.innerHTML = `
+				<img src=${this.imgSrc} alt=${this.imgAlt} />
+				<h3 class="menu__item-subtitle">${this.itemSubtitle}</h3>
+				<div class="menu__item-descr">
+					${this.itemDiscr}
+				</div>
+				<div class="menu__item-divider"></div>
+				<div class="menu__item-price">
+					<div class="menu__item-cost">Цена:</div>
+					<div class="menu__item-total">
+						<span>${this.itemPrice}</span> грн/день
+					</div>
+				</div>
+			`;
+			this.parentSelector.append(menuItem);
+		}
+	}
+
+	const vegy = new ConstructMenuItem(
+		'.menu__field > .container',
+		'img/tabs/vegy.jpg',
+		'vegy',
+		'Меню "Фитнес"',
+		'Меню "Фитнес" - это новый подход к приготовлению блюд: больше свежих овощей и фруктов. Продукт активных и здоровых людей. Это абсолютно новый продукт с оптимальной ценой и высоким качеством!',
+		229
+	);
+	vegy.render();//todo таким образом мы можем обращаться дальше ко объекту
+
+
+	// new ConstructMenuItem('.menu__field > .container', 'img/tabs/vegy.jpg', 'vegy', 'Меню "Фитнес"', 'Меню "Фитнес" - это новый подход к приготовлению блюд: больше свежих овощей и фруктов. Продукт активных и здоровых людей. Это абсолютно новый продукт с оптимальной ценой и высоким качеством!', 229).render(); //todo  создали он выполнился и ссылки на него больше нет (если нужно использовать 1 раз)
+
+	const elite = new ConstructMenuItem(
+		'.menu__field > .container',
+		'img/tabs/elite.jpg',
+		'elite', 'Меню “Премиум”',
+		'В меню “Премиум” мы используем не только красивый дизайн упаковки, но и качественное исполнение блюд. Красная рыба, морепродукты, фрукты - ресторанное меню без похода в ресторан!',
+		550,
+		'menu__i'
+	);
+	elite.render();
+
+	const post = new ConstructMenuItem(
+		'.menu__field > .container',
+		'img/tabs/post.jpg',
+		'post',
+		'Меню "Постное"',
+		'Меню “Постное” - это тщательный подбор ингредиентов: полное отсутствие продуктов животного происхождения, молоко из миндаля, овса, кокоса или гречки, правильное количество белков за счет тофу и импортных вегетарианских стейков.',
+		430,
+		'menu__item'
+	);
+	post.render();
+
+	//! Старый код
 	// class CardMenu {
 	// 	constructor(
 	// 		imgUrl,
@@ -1779,298 +2087,24 @@ window.addEventListener("DOMContentLoaded", () => { //! весь джава ко
 // 	).render();
 // });
 
-// ! 039 Скрипты и время их выполнения. setTimeout и setInterval
-/* 
-const modal = document.querySelector(".modal"),
-	modalClose = document.querySelector(".modal__close"),
-	modalBtn = modal.querySelector("button");
-function hideModal(e = modal) {
-	if (e.style.display == "block") {
-		e.style.display = "none";
-	}
-}
-function showModal(e = modal) {
-	e.style.display = "block";
-}
-const intervalModal = setInterval(showModal, 1000);
-
-// setTimeout(() => {
-// 	modal.style.display = "block";
-// }, 3000);
-
-modalClose.addEventListener("click", () => {
-	// ? делегирование (передача) события клика от враппера кнопок, к самим кнопка по условию, что позволяет работать с динамически добавленным контентом
-	hideModal();
-});
-modalBtn.addEventListener("click", () => {
-	// ? делегирование (передача) события клика от враппера кнопок, к самим кнопка по условию, что позволяет работать с динамически добавленным контентом
-	console.log("1");
-	clearInterval(intervalModal);
-});
-let i = 0; // ? счетчтик
-let id = setTimeout(function log() {
-	console.log("Hellow!"); // ? этот код будет строго выполняться строго через каждые полсекунды, вне зависимости от того, сколько времени нужно чтобы код выполнился (рекурсия СетИнтервал)
-	id = setTimeout(log, 500);
-	i++;
-	if (i === 3) {
-		// ? если выполнилось 10 раз отрубаем интервал
-		clearInterval(id);
-	}
-}, 500);
- */
-// ! 040 Работа с датами
-// const nowData = new Date();
-
-// console.log(nowData.getFullYear());
-// console.log(nowData.getMonth());
-// console.log(nowData.getDate());
-
-// console.log(nowData.getDay());
-
-// console.log(nowData.getHours()); // ? месный часовой пояс
-// console.log(nowData.getUTSHours()); // ? по гринвичу
-
-// console.log(nowData.getTimezoneOffset()); // ? на сколько минут разница с гринвичем
-
-// console.log(nowData.getTime()); // ? милисекунд прошло с 1970 года
-
-// const dats = nowData.getTime();
-// console.log(new Date(dats));
-
-// // ? сколько проходит времени между событиями
-// const startDate = new Date();
-// for (let i = 0; i < 9999999999; i++) {
-// 	let some = i ** 3;
-// }
-// const endDate = new Date();
-// console.log(`Код отработал за ${(endDate - startDate) / 1000} секунд`);
-
-// !042 Параметры документа, окна и работа с ними
-// console.log(
-// 	document.querySelector(".offer__action .btn").getBoundingClientRect() //? координаты элемента (все считаются от лквого верхнего угла)
-// );
-
-// console.log(
-// 	window.getComputedStyle(document.querySelector(".offer__action .btn"))
-// 	//? все скомпилированные стили объекта
-// );
-
-// console.log(
-// 	window.getComputedStyle(document.querySelector(".offer__action .btn"))
-// 		.display
-// 	//? Какое надо свойство можем получить, но не можем изменять
-// );
-
-// console.log(document.documentElement.scrollTop);
-/* 
-document.querySelector(".order__form .btn").addEventListener("click", (e) => {
-	//? скролл топ 0
-	e.preventDefault();
-	function scrollTop0() {
-		if (document.documentElement.scrollTop <= 0) {
-			clearInterval(interval);
-		} else {
-			document.documentElement.scrollTop -= 30;
-		}
-	}
-	const interval = setInterval(scrollTop0, 10);
-});
- */
-// window.scrollBy(0, 300); //? скролл от текущего положения на 300 пх вниз
-// window.scrollTo(0, 300); //? скролл от начала страницы на 300 пх вниз
-
-//! 045 Функции-конструкторы
-// function User(name, age, id) {
-// 	// ? Инициализация функции-конструкора (она создает разные объекты)
-// 	this.name = name;
-// 	this.age = age;
-// 	this.id = id;
-// 	this.human = true;
-// 	this.hello = function () {
-// 		// ? можно добавлять методы в конструктор
-// 		console.log(`Hello ${this.name}`);
-// 	};
-// }
-// User.prototype.exit = function () {
-// 	// ? если нет доступа к основной функции конструктору таким образом добвляем к ней еще методы или параметры
-// 	console.log(`Пользователь ${this.name} вышел`);
-// };
-// /*
-// class User {
-// 	// ? классы это синтаксический сахар функций-конструкторов (тоже самое)
-// 	constructor(name,age,id){
-// 		this.name = name;
-// 	this.age = age;
-// 	this.id = id;
-// 	this.human = true;
-// 	}
-// 	hello() {
-// 		console.log(`Hello ${this.name}`);
-// 	}
-// 	exit() {
-// 		console.log(`Пользователь ${this.name} вышел`);
-// 	}
-// }
-//  */
-// const eugene = new User("Eugene", 33);
-// // ? Создание с помощью конструктора новых обьектов
-// const taras = new User("Taras", 10);
-// // ? Создание с помощью конструктора новых обьектов
-// eugene.id = "#322";
-// // ? запись данных в обект
-// eugene.id = "322";
-// // ? перезапись данных в обект
-
-// console.log(eugene);
-// taras.hello();
-// eugene.exit();
-
-//! 046 Контекст вызова. This
-
-//! ВАЖНО
-// function showThis(a, b) {
-// 	console.log(this); //undefind
-// 	function sum() {
-// 		console.log(this); //undefind
-// 		return a + b; //ищит в теле своей функции, потом ищет у родительской функции
-// 	}
-
-// 	console.log(sum()); //зымыкаем функцию
-// }
-// showThis(5, 15);
-//? 1) В обычной функции заданной через свойство function : контекст this = window, если не использован 'use strict', если использован = undefined.
-
-// const obj = {
-// 	a: 30,
-// 	b: 40,
-// 	sum: function () {
-// 		// это метод функции и его контекст вызова сам объект
-// 		console.log(`контекст вызова метода объекта равен = ${this}`);
-// 		function shout() {
-// 			console.log(
-// 				`контекст вызова функции, которая не является методом равно = ${this}`
-// 			);
-// 		}
-// 		shout();
-// 		const bz = () => {
-// 			console.log(
-// 				`контекст вызова функции, которая не является методом (но являющейся стрелочной) равно = ${this}`
-// 			);
-// 		};
-// 		bz();
-// 	},
-// };
-// obj.sum();
-// //? 2) Контекст this у методов объектов = самому обьекту.
-
-// function User(name, age, id) {
-// 	// ? Инициализация функции-конструкора (она создает разные объекты)
-// 	this.name = name;
-// 	this.age = age;
-// 	this.id = id;
-// 	this.human = true;
-// 	this.hello = function () {
-// 		// ? можно добавлять методы в конструктор
-// 		console.log(`Hello ${this.name}`);
-// 	};
-// }
-// const eugene = new User("Eugene", 33);
-
-// //? 3) this в конструкторах и классах - это новый экземпляр объекта (конструктора или класса)
-
-// function sayName(id, rlyBig) {
-// 	console.log(this);
-// 	console.log(this.name);
-// 	console.log(this.dick);
-// 	console.log(id);
-// 	console.log(rlyBig);
-// }
-
-// const user = {
-// 	name: "Pipka",
-// 	dick: 10,
-// };
-// sayName.call(user, 23, true); //указание функции работы на контексте в часности на обьекте user
-// sayName.apply(user, ["23", true]);
-
-// function count(num) {
-// 	return this * num;
-// }
-
-// const double = count.bind(2); // (2) передается в функцию как контекст вызова (вместо this)
-// console.log(double(5));
-// console.log(double(22));
-
-//? 4) Ручная привязка this: это методы call и apply (прямое указание функции контекста), bind (создает новую функцию связанную с определенным контекстом).
-
-// const btn = document.querySelector(".modal__content button");
-
-// // btn.addEventListener("click", function (e) {
-// // 	if (e.target === this) {
-// // 		console.log("e.target === this");
-// // 	}
-// // });
-
-// const objJ = {
-// 	num: 5,
-// 	sayNumb: function () {
-// 		const say = () => {
-// 			console.log(this.num);
-// 		};
-// 		say();
-// 	},
-// };
-// objJ.sayNumb();
-
-//! 047 Классы (ES6)
-// class Rectangle {
-// 	constructor(height, width) {
-// 		this.height = height;
-// 		this.width = width;
-// 	}
-
-// 	calcArea() {
-// 		return this.height * this.width;
-// 	}
-// }
-// class ColoredRectangleWithText extends Rectangle {
-// 	//? Наследует методы и свойства от родительского класса Rectangle
-// 	constructor(height, width, text, bgColor) {
-// 		super(height, width); //? копирует все параметры родителя this.height = height; и this.width = width;, если ничего в скобках не указано, либо непосредственно те, которые указываем
-// 		this.text = text;
-// 		this.bgColor = bgColor;
-// 	}
-
-// 	showMyProps() {
-// 		console.log(
-// 			`Текст: ${this.text}, цвет: ${this.bgColor}, высота:${this.height}, ширина:${this.width}`
-// 		);
-// 	}
-// }
-
-// const squaer = new Rectangle(10, 10);
-// const squaerLong = new Rectangle(20, 100);
-// const squaerWidthText = new ColoredRectangleWithText(40, 50, "Lol", "#000");
-// // console.log(squaer.calcArea());
-// // console.log(squaerLong.calcArea());
-// squaerWidthText.showMyProps();
-// console.log(squaerWidthText.calcArea());
-//! Принципы ООП
-//? 1) Абстракция - отделение концепции от экземпляра. Пример это КЛАССЫ концепция это сам шаблон класса, и экземпляры это копии на основе этого шаблона с разными параметрами.
-
-//? 2) Наследование - способность объекта или класса базироваться на другом объекта или классе
-
 //! 049 Rest оператор и параметры по умолчанию (ES6)
-// const log = function (a, b, ...rest) {
-// 	// ? рест оператор собирает все что остается все остальные параметры в данном случаи ипомещает их в массив
+
+// const log = function (a, b, ...rest) { //todo рест оператор (название любое обозначение что это рест оператор, это 3 точки и он обязательно должен быть последним) собирает все что остается (все остальные параметры в данном случаи) и помещает их в массив
 // 	console.log(a, b, rest);
 // };
-// log("asdasd", "fghfghfgh", "3", "4", "sda", "ass", 7);
+// log("asdasd", "fghfghfgh", "3", "4", "sda", "ass", 7); //todo а спред оператов выполняет обратное действие разбивает массив на отдельные элементы
 
-// function calcOrDouble(num, basis = 2) {
+// function calcOrDouble(num, basis = 2) { //todo задаем basis параметр по умолчанию 2
 // 	console.log(num * basis);
 // }
 // calcOrDouble(3);
+// calcOrDouble(2, 4); //todo вместо параметра по умолчанию подставится 4
+
+//! 050 Локальные сервера
+
+//*GET запрос на сервер - это получение какой-то информации по запросу пользователя
+
+//*POST запрос - постит данные на сервер
 
 // ! 051 JSON формат передачи данных, глубокое клонирование объектов
 // const persone = {
